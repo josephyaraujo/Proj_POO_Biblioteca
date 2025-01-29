@@ -7,6 +7,7 @@
 |  Data  | Versão | Descrição | Autor |
 |:-------|:-------|:----------|:------|
 | 26/01/2025 |  **`1.00`** | Versão Inicial  | Emanuelly Karine |
+| 29/01/2025 | **`1.2`** | Versão 2 | Emanuelly Karine |
 
 
 ### 1. Objetivo do Projeto 
@@ -47,12 +48,15 @@ Para os clientes, as necessidades são a procura mais rápida e eficiente de liv
 
 | Nome | Descrição |
 |:--- |:--- |
-| Entrar no sistema | Usuários devem logar no sistema para acessar as funcionalidades relacionadas aos livros|
-| Cadastro de Funcionários | Administrador do sistema mantém o cadastro dos funcionários responsáveis pelo gerenciamento dos livros |
-| Gerenciamento de livros |  Funcionário mantém a relação de livros e gêneros |
-| Gerenciamento da disponibilidade | Funcionário registra os livros disponíveis, modificando o status do mesmo |
+| Entrar no sistema | Usuários devem logar no sistema para acessar as funcionalidades relacionadas aos exemplares |
+| Cadastro de Funcionários | Administrador do sistema mantém o cadastro dos funcionários responsáveis pelo gerenciamento dos exemplares |
+| Gerenciamento de exemplar |  Funcionário mantém a relação de exemplares |
+| Cadastro de gêneros | Funcionário realiza cadastro de gêneros de livros |
+| Gerenciamento da disponibilidade | Funcionário registra os exemplares disponíveis, modificando o status do mesmo |
 | Cadastro de Clientes | Cliente deve realizar o auto cadastramento |
-| Consulta de livros | Cliente consulta disponibilidade de livros, podendo fazer o empréstimo |
-| Consulta de empréstimo de livros | Cliente consulta livros que pediu empréstimo, podendo marcar a devolução ou pedir aumento de prazo |
+| Consulta de exemplares | Cliente consulta disponibilidade de exemplares, podendo fazer o empréstimo |
+| Consulta de empréstimo de exemplares | Cliente consulta exemplares que pediu empréstimo, podendo marcar a devolução ou pedir aumento de prazo |
+| Pedido de empréstimo de exemplar | Cliente realiza o pedido de empréstimo para o exemplar necessário |
+| Cadastro de livros | Funcionário realiza cadastro de livros |
 | Gerenciamento de prazos | Funcionário consulta prazos estipulados para a devolução do livro, podendo permitir o aumento de prazo por no máximo 3 vezes |
 
