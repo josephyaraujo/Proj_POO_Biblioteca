@@ -6,8 +6,8 @@
 
 |  Data  | Versão | Descrição | Autor |
 |:-------|:-------|:----------|:------|
-| 26/01/2025 |  **`1.00`** | Versão Inicial  | Emanuelly Karine |
-| 29/01/2025 | **`1.2`** | Versão 2 | Emanuelly Karine |
+| 26/01/2025 |  **`1.00`** | Versão Inicial  | Emanuelly Karine e Josephy Cruz|
+| 29/01/2025 | **`1.2`** | Versão 2 | Emanuelly Karine e Josephy Cruz|
 
 
 ### 1. Objetivo do Projeto 
