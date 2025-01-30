@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.10">
   <diagram name="Página-1" id="3cEowCFVHvOc9PCuCaK-">
-    <mxGraphModel dx="4412" dy="1865" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2131" dy="678" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -721,8 +721,13 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="3AB0t5_sJRTs1TqdBcbe-217" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;endArrow=open;endFill=0;dashed=1;" parent="1" source="3AB0t5_sJRTs1TqdBcbe-224" target="3AB0t5_sJRTs1TqdBcbe-225" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="3AB0t5_sJRTs1TqdBcbe-217" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.239;exitY=0.008;exitDx=0;exitDy=0;endArrow=open;endFill=0;dashed=1;exitPerimeter=0;" parent="1" source="3AB0t5_sJRTs1TqdBcbe-224" target="3AB0t5_sJRTs1TqdBcbe-225" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-761" y="1218" />
+              <mxPoint x="-760" y="1218" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="3AB0t5_sJRTs1TqdBcbe-218" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=open;endFill=0;" parent="1" source="3AB0t5_sJRTs1TqdBcbe-224" target="3AB0t5_sJRTs1TqdBcbe-228" edge="1">
           <mxGeometry relative="1" as="geometry">
