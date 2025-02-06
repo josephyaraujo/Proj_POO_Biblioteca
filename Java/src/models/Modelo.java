@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Modelo{
-    private static List<Modelo> objetos = new ArrayList<>;
+public abstract class Modelo<T extends Objeto>{
+    protected List<T> objetos = new ArrayList<>();
 
-    public static void inserir(Modelo obj){
+    public void inserir(T obj){
         abrir();
 
         int id = 0;
-        for (Modelo objeto:objetos) {
-            if (objeto.getId() > id) id = objeto;getId();
+        for (T objeto:objetos) {
+            if (objeto.getId() > id) id = objeto.getId();
         }
         obj.setId(id + 1);
 
@@ -17,31 +17,38 @@ public abstract class Modelo{
         salvar();
     }
 
-    public static List<Modelo> listar(){
+    public List<T> listar(){
         abrir();
-
+        
         return objetos;
     }
 
-    public static Modelo listarId (int id){
-        abrir();
-        
-        for (Modelo objeto:objetos) {
-            if (objeto.getId() == id) return objeto;
+    public T listarId (int id){
+        for (T obj:objetos) {
+            abrir();
+            if (obj.getId() == id) return obj;
         }
 
         return null;
     }
+    public void atualizar(T obj){
+        T objeto = listarId(obj.getId());
+        if (objeto != null) {
+            objetos.remove(objeto);
+            objetos.add(obj);
+            salvar();
+        }
+    }
 
-    public static void excluir(Modelo obj) {
-        Modelo objeto = listarId(obj.getId());
+    public void excluir(T obj) {
+        T objeto = listarId(obj.getId());
         if (objeto != null){
             objetos.remove(objeto);
             salvar();
         }
     }
 
-    public static abstract void salvar();
+    public abstract void salvar();
 
-    public static abstract void abrir();
+    public abstract void abrir();
 }

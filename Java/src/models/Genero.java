@@ -1,4 +1,4 @@
-public class Genero{
+public class Genero implements Objeto{
     private int id;
     private String descricao;
 
@@ -24,6 +24,6 @@ public class Genero{
     }
 
     public String toString(){
-        return String.format("Genero \n ID = %s \n Nome = %s", this.id, this.descricao);
+        return String.format("Genero \n ID = %s \n Descrição = %s", this.id, this.descricao);
     }
 }

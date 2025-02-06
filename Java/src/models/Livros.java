@@ -6,13 +6,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Generos extends Modelo<Genero>{
+public class Livros extends Modelo<Livro> {
     @Override
     public void abrir(){
         objetos.clear();  // Limpa a lista antes de carregar
         try {
-            FileReader reader = new FileReader("generos.json");
-            Type listType = new TypeToken<List<Genero>>(){}.getType();
+            FileReader reader = new FileReader("livros.json");
+            Type listType = new TypeToken<List<Livro>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
         } catch (FileNotFoundException e) {
@@ -25,7 +25,7 @@ public class Generos extends Modelo<Genero>{
     @Override
     public void salvar(){
         try {
-            FileWriter writer = new FileWriter("generos.json");
+            FileWriter writer = new FileWriter("livros.json");
             Gson gson = new Gson();
             gson.toJson(objetos, writer);  // Converte a lista para JSON e escreve no arquivo
             writer.close();
