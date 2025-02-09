@@ -12,7 +12,7 @@ public class Exemplares extends Modelo<Exemplar>{
     public void abrir(){
         objetos.clear();  // Limpa a lista antes de carregar
         try {
-            FileReader reader = new FileReader("exemplares.json");
+            FileReader reader = new FileReader("/workspaces/Proj_POO_Biblioteca/Arquivos/exemplares.json");
             Type listType = new TypeToken<List<Exemplar>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
@@ -26,7 +26,7 @@ public class Exemplares extends Modelo<Exemplar>{
     @Override
     public void salvar(){
         try {
-            FileWriter writer = new FileWriter("exemplares.json");
+            FileWriter writer = new FileWriter("/workspaces/Proj_POO_Biblioteca/Arquivos/exemplares.json");
             Gson gson = new Gson();
             gson.toJson(objetos, writer);  // Converte a lista para JSON e escreve no arquivo
             writer.close();

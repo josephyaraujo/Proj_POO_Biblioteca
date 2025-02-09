@@ -4,9 +4,9 @@ public class Usuario implements Objeto{
     private String email;
     private String fone;
     private String senha;
-    private int tipoUsuario;
+    private EnumUsuarios tipoUsuario;
 
-    public Usuario(int id, String nome, String email, String fone, String senha, int tipoUsuario){
+    public Usuario(int id, String nome, String email, String fone, String senha, EnumUsuarios tipoUsuario){
         setId(id);
         setNome(nome);
         setEmail(email);
@@ -35,7 +35,7 @@ public class Usuario implements Objeto{
         this.senha = senha;
     }
 
-    public void setTipoUsuario(int tipoUsuario){
+    public void setTipoUsuario(EnumUsuarios tipoUsuario){
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -51,15 +51,15 @@ public class Usuario implements Objeto{
         return this.email;
     }
 
-    public Boolean getFone(){
+    public String getFone(){
         return this.fone;
     }
 
-    public int getSenha(){
+    public String getSenha(){
         return this.senha;
     }
 
-    public int getTipoUsuario(){
+    public EnumUsuarios getTipoUsuario(){
         return this.tipoUsuario;
     }
 

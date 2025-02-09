@@ -6,7 +6,7 @@ public class Exemplar implements Objeto{
     private int idLivro;
     private int idGenero;
 
-    public Exemplar(int id, int edicao, String editora, Boolean s, int idLivro, int idGenero){
+    public Exemplar(int id, int edicao, String editora, Boolean situacao, int idLivro, int idGenero){
         setId(id);
         setEdicao(edicao);
         setEditora(editora);
