@@ -8,8 +8,10 @@ public class UITeste{
         
 
         Livro l = new Livro(0, "amor", "joao", 2025, 1);
-        Livros crud = new Livros();
-        crud.inserir(l);
+        Livros livro = new Livros();
+        livro.inserir(l);
+
+        
 
     }
 }
