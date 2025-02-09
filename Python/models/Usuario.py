@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from Modelo import Modelo
 from enum import Enum
 
 class Usuario:

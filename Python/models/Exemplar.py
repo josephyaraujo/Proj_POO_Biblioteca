@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from Modelo import Modelo
 
 class Exemplar:
     def __init__(self, id, edicao, editora, situacao, id_livro, id_genero):

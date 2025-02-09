@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from Modelo import Modelo
 
 class Emprestimo:
     def __init__(self, id, data, data_devolucao, prazo_extendido, id_exemplar, id_usuario):

@@ -1,5 +1,5 @@
 # import json
-from models.Livro import Livros
+from models.Livro import Livros, Livro
 
 livros = Livros.listar()
 for l in livros:
