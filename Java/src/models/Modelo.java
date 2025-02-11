@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Modelo<T extends Objeto>{
+abstract class Modelo<T extends Objeto>{
     protected List<T> objetos = new ArrayList<>();
 
     public void inserir(T obj){
@@ -24,13 +24,14 @@ public abstract class Modelo<T extends Objeto>{
     }
 
     public T listarId (int id){
+        abrir();
         for (T obj:objetos) {
-            abrir();
             if (obj.getId() == id) return obj;
         }
 
         return null;
     }
+    
     public void atualizar(T obj){
         T objeto = listarId(obj.getId());
         if (objeto != null) {

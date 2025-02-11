@@ -1,6 +1,14 @@
 [
   {
     "id": 1,
+    "descricao": "comedia"
+  },
+  {
+    "id": 2,
     "descricao": "terror"
+  },
+  {
+    "id": 3,
+    "descricao": "romance"
   }
 ]

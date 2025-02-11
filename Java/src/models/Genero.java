@@ -24,6 +24,6 @@ public class Genero implements Objeto{
     }
 
     public String toString(){
-        return String.format("Genero \n ID = %s \n Descrição = %s", this.id, this.descricao);
+        return String.format("Genero \n ID = %s \n Descrição = %s\n", this.id, this.descricao);
     }
 }

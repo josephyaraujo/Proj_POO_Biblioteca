@@ -2,13 +2,13 @@ import java.time.LocalDate;
 
 public class Emprestimo implements Objeto{
     private int id;
-    private LocalDate data;
-    private LocalDate dataDevolucao;
+    private String data;
+    private String dataDevolucao;
     private int prazoExtendido;
     private int idExemplar;
     private int idUsuario;
 
-    public Emprestimo(int id, LocalDate data, LocalDate dataDevolucao, int prazoExtendido, int idExemplar, int idUsuario){
+    public Emprestimo(int id, String data, String dataDevolucao, int prazoExtendido, int idExemplar, int idUsuario){
         setId(id);
         setData(data);
         setDataDevolucao(dataDevolucao);
@@ -21,11 +21,11 @@ public class Emprestimo implements Objeto{
         this.id = id;
     }
 
-    public void setData(LocalDate data){
+    public void setData(String data){
         this.data = data;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao){
+    public void setDataDevolucao(String dataDevolucao){
         this.dataDevolucao = dataDevolucao;
     }
 
@@ -45,11 +45,11 @@ public class Emprestimo implements Objeto{
         return this.id;
     }
 
-    public LocalDate getData(){
+    public String getData(){
         return this.data;
     }
 
-    public LocalDate getDataDevolucao(){
+    public String getDataDevolucao(){
         return this.dataDevolucao;
     }
 
