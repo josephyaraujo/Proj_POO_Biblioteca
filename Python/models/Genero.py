@@ -29,7 +29,7 @@ class Genero:
 class Generos(Modelo):
     @classmethod
     def salvar(cls):
-        with open("/workspaces/Proj_POO_Biblioteca/Arquivos/generos.json", mode="w") as arquivo:
+        with open("../../Arquivos/generos.json", mode="w") as arquivo:
             json.dump([genero.to_dict() for genero in cls.objetos], arquivo, indent=2) #vars - converte um objeto em dicionario
             #dump - pega a lista de obejtos e salva no arquivo
             
@@ -37,7 +37,7 @@ class Generos(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("/workspaces/Proj_POO_Biblioteca/Arquivos/generos.json", mode="r") as arquivo:
+            with open("../../Arquivos/generos.json", mode="r") as arquivo:
                 generos_json = json.load(arquivo)
                 for obj in generos_json:
                     g = Genero(obj["id"], obj["descricao"])

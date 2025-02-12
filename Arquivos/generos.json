@@ -10,5 +10,13 @@
   {
     "id": 3,
     "descricao": "romance"
+  },
+  {
+    "id": 4,
+    "descricao": "terror"
+  },
+  {
+    "id": 5,
+    "descricao": "romance"
   }
 ]

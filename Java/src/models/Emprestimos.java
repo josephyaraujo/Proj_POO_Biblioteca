@@ -11,7 +11,7 @@ public class Emprestimos extends Modelo<Emprestimo>{
     public void abrir(){
         objetos.clear();  // Limpa a lista antes de carregar
         try {
-            FileReader reader = new FileReader("/workspaces/Proj_POO_Biblioteca/Arquivos/emprestimos.json");
+            FileReader reader = new FileReader("../Arquivos/emprestimos.json");
             Type listType = new TypeToken<List<Emprestimo>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
@@ -25,7 +25,7 @@ public class Emprestimos extends Modelo<Emprestimo>{
     @Override
     public void salvar(){
         try {
-            FileWriter writer = new FileWriter("/workspaces/Proj_POO_Biblioteca/Arquivos/emprestimos.json");
+            FileWriter writer = new FileWriter("../Arquivos/emprestimos.json");
             Gson gson = new Gson();
             gson.toJson(objetos, writer);  // Converte a lista para JSON e escreve no arquivo
             writer.close();

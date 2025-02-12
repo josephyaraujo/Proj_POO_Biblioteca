@@ -58,7 +58,7 @@ class Usuario:
 class Usuarios(Modelo):
     @classmethod
     def salvar(cls):
-        with open("/workspaces/Proj_POO_Biblioteca/Arquivos/usuarios.json", mode="w") as arquivo:
+        with open("../../Arquivos/usuarios.json", mode="w") as arquivo:
             json.dump([usuarios.to_dict() for usuarios in cls.objetos], arquivo, indent=6) #vars - converte um objeto em dicionario
             #dump - pega a lista de obejtos e salva no arquivo
             
@@ -66,7 +66,7 @@ class Usuarios(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("/workspaces/Proj_POO_Biblioteca/Arquivos/usuarios.json", mode="r") as arquivo:
+            with open("../../Arquivos/usuarios.json", mode="r") as arquivo:
                 usuarios_json = json.load(arquivo)
                 for obj in usuarios_json:
                     u = Usuario(obj["id"], obj["nome"], obj["email"], obj["fone"], obj["senha"], obj["tipoUsuario"])

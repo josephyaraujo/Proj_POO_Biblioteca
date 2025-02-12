@@ -11,7 +11,7 @@ public class Generos extends Modelo<Genero>{
     public void abrir(){
         objetos.clear();  // Limpa a lista antes de carregar
         try {
-            FileReader reader = new FileReader("/workspaces/Proj_POO_Biblioteca/Arquivos/generos.json");
+            FileReader reader = new FileReader("../Arquivos/generos.json");
             Type listType = new TypeToken<List<Genero>>(){}.getType();
             objetos = new Gson().fromJson(reader, listType);
             reader.close();
@@ -25,7 +25,7 @@ public class Generos extends Modelo<Genero>{
     @Override
     public void salvar(){
         try {
-            FileWriter writer = new FileWriter("/workspaces/Proj_POO_Biblioteca/Arquivos/generos.json");
+            FileWriter writer = new FileWriter("../Arquivos/generos.json");
             Gson gson = new Gson();
             gson.toJson(objetos, writer);  // Converte a lista para JSON e escreve no arquivo
             writer.close();
