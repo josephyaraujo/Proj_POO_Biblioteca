@@ -7,14 +7,12 @@ public class View {
         for (Usuario u : usuarios) {
             if (u.getEmail().equals(email) && u.getSenha().equals(senha)){
                 if (u.getTipoUsuario() == EnumUsuarios.ADMIN || u.getTipoUsuario() == EnumUsuarios.FUNCIONARIO) {
-                    System.out.println("Você não tem acesso a essa página");
                     return null;
                 } else {
                     return u;
                 }
             }         
         }
-        System.out.println("Usuario não encontrado.");
         return null;
     }
 

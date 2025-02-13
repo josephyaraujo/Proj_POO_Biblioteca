@@ -27,7 +27,9 @@ public class UITeste{
         System.out.print("Senha: ");
         String senha = input.nextLine();
 
-        View.usuarioAutenticar(email, senha);
+        if (View.usuarioAutenticar(email, senha) == null) {
+            System.out.println("Usuario não tem acesso a essa página.");
+        };
     }
 
     public static void cadastrarSistema(){
