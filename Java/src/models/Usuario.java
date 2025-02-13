@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Usuario implements Objeto{
     private int id;
     private String nome;
@@ -20,19 +23,27 @@ public class Usuario implements Objeto{
     }
 
     public void setNome(String nome){
-        this.nome = nome;
+        if (nome != "") this.nome = nome;
+        else throw new IllegalArgumentException("Nome não pode ser vazio");
     }
 
     public void setEmail(String email){
-        this.email = email;
+        //Expressão regular \\ - dispensa o . $ - fim da string ^ - começo da string
+        String regex = "^[a-zA-Z0-9._%+-]+@gmail\\.com$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if (email != "" || matcher.matches()) this.email = email;
+        else throw new IllegalArgumentException("Email inválido");
     }
 
     public void setFone(String fone){
-        this.fone = fone;
+        if (fone != "") this.fone = fone;
+        else throw new IllegalArgumentException("Numero de telefone não pode ser vazio");
     }
 
     public void setSenha(String senha){
-        this.senha = senha;
+        if (senha != "") this.senha = senha;
+        else throw new IllegalArgumentException("Senha não pode ser vazia.");
     }
 
     public void setTipoUsuario(EnumUsuarios tipoUsuario){

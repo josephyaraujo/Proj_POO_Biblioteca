@@ -1,5 +1,5 @@
 import json
-from Modelo import Modelo
+from models.Modelo import Modelo
 from enum import Enum
 
 class Usuario:
@@ -48,17 +48,17 @@ class Usuario:
         return self.__tipo_usuario
     
     def __str__(self):
-        return f"ID = {self.get_id()}  |  NOME = {self.get_nome()}  |  EMAIL = {self.get_email()}  |  FONE = {self.get_fone()} | SENHA = {self.get_senha()} | TIPO USUARIO = {self.get_tipo_usuario().value}"
+        return f"ID = {self.get_id()}  |  NOME = {self.get_nome()}  |  EMAIL = {self.get_email()}  |  FONE = {self.get_fone()} | SENHA = {self.get_senha()} | TIPO USUARIO = {self.get_tipo_usuario()}"
     
     def to_dict(self):
         return {
-            "id": self.get_id(), "nome": self.get_nome(), "email" : self.get_email(), "fone" : self.get_fone(), "senha" : self.get_senha(), "tipo usuario" : self.get_tipo_usuario().value
+            "id": self.get_id(), "nome": self.get_nome(), "email" : self.get_email(), "fone" : self.get_fone(), "senha" : self.get_senha(), "tipoUsuario" : self.get_tipo_usuario()
         }
     
 class Usuarios(Modelo):
     @classmethod
     def salvar(cls):
-        with open("../../Arquivos/usuarios.json", mode="w") as arquivo:
+        with open("../Arquivos/usuarios.json", mode="w") as arquivo:
             json.dump([usuarios.to_dict() for usuarios in cls.objetos], arquivo, indent=6) #vars - converte um objeto em dicionario
             #dump - pega a lista de obejtos e salva no arquivo
             
@@ -66,7 +66,7 @@ class Usuarios(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("../../Arquivos/usuarios.json", mode="r") as arquivo:
+            with open("../Arquivos/usuarios.json", mode="r") as arquivo:
                 usuarios_json = json.load(arquivo)
                 for obj in usuarios_json:
                     u = Usuario(obj["id"], obj["nome"], obj["email"], obj["fone"], obj["senha"], obj["tipoUsuario"])

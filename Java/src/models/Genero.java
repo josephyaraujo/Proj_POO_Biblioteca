@@ -12,7 +12,8 @@ public class Genero implements Objeto{
     }
 
     public void setDescricao(String d){
-        this.descricao = d;
+        if (d != "") this.descricao = d;
+        else throw new IllegalArgumentException("Descrição vazia");
     }
 
     public int getId(){

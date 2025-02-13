@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.*;
 
 public class Emprestimo implements Objeto{
     private int id;
@@ -11,7 +12,7 @@ public class Emprestimo implements Objeto{
     public Emprestimo(int id, String data, String dataDevolucao, int prazoExtendido, int idExemplar, int idUsuario){
         setId(id);
         setData(data);
-        setDataDevolucao(dataDevolucao);
+        setDataDevolucao(data, dataDevolucao);
         setPrazoExtendido(prazoExtendido);
         setIdExemplar(idExemplar);
         setIdUsuario(idUsuario);
@@ -25,12 +26,18 @@ public class Emprestimo implements Objeto{
         this.data = data;
     }
 
-    public void setDataDevolucao(String dataDevolucao){
-        this.dataDevolucao = dataDevolucao;
+    public void setDataDevolucao(String data, String dataDevolucao){
+        String formato = "dd/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+        LocalDate dataComeco = LocalDate.parse(data, formatter);
+        LocalDate dataDev = LocalDate.parse(dataDevolucao, formatter);
+        if (dataDev.isAfter(dataComeco)) this.dataDevolucao = dataDevolucao;
+        else throw new IllegalArgumentException("Data inválida");
     }
 
     public void setPrazoExtendido(int prazoExtendido){
-        this.prazoExtendido = prazoExtendido;
+        if (prazoExtendido < 0 || prazoExtendido >= 10) this.prazoExtendido = prazoExtendido;
+        else throw new IllegalArgumentException("Valor de prazo extendido inválido.");
     }
 
     public void setIdExemplar(int idExemplar){

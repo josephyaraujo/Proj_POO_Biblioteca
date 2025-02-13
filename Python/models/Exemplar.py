@@ -1,5 +1,5 @@
 import json
-from Modelo import Modelo
+from models.Modelo import Modelo
 
 class Exemplar:
     def __init__(self, id, edicao, editora, situacao, id_livro, id_genero):
@@ -56,7 +56,7 @@ class Exemplar:
 class Exemplares(Modelo):
     @classmethod
     def salvar(cls):
-        with open("../../Arquivos/exemplares.json", mode="w") as arquivo:
+        with open("../Arquivos/exemplares.json", mode="w") as arquivo:
             json.dump([exemplar.to_dict() for exemplar in cls.objetos], arquivo, indent=6) #vars - converte um objeto em dicionario
             #dump - pega a lista de obejtos e salva no arquivo
             
@@ -64,7 +64,7 @@ class Exemplares(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("../../Arquivos/exemplares.json", mode="r") as arquivo:
+            with open("../Arquivos/exemplares.json", mode="r") as arquivo:
                 exemplares_json = json.load(arquivo)
                 for obj in exemplares_json:
                     e = Exemplar(obj["id"], obj["edicao"], obj["editora"], obj["situacao"], obj["idLivro"], obj["idGenero"])

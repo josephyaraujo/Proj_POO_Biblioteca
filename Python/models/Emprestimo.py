@@ -1,5 +1,5 @@
 import json
-from Modelo import Modelo
+from models.Modelo import Modelo
 
 class Emprestimo:
     def __init__(self, id, data, data_devolucao, prazo_extendido, id_exemplar, id_usuario):
@@ -57,7 +57,7 @@ class Emprestimo:
 class Emprestimos(Modelo):
     @classmethod
     def salvar(cls):
-        with open("../../Arquivos/emprestimos.json", mode="w") as arquivo:
+        with open("../Arquivos/emprestimos.json", mode="w") as arquivo:
             json.dump([emprestimo.to_dict() for emprestimo in cls.objetos], arquivo, indent=6) #vars - converte um objeto em dicionario
             #dump - pega a lista de obejtos e salva no arquivo
             
@@ -65,7 +65,7 @@ class Emprestimos(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("../../Arquivos/emprestimos.json", mode="r") as arquivo:
+            with open("../Arquivos/emprestimos.json", mode="r") as arquivo:
                 emprestimos_json = json.load(arquivo)
                 for obj in emprestimos_json:
                     e = Emprestimo(obj["id"], obj["data"], obj["dataDevolucao"], obj["prazoExtendido"], obj["idExemplar"], obj["idUsuario"])

@@ -1,1 +1,1 @@
-[{"id":1,"nome":"manu","email":"manu@gmail.com","fone":"(84) 98635-9205","senha":"manu123","tipoUsuario":"ADMIN"}]
+[{"id":1,"nome":"josephy","email":"josephy@gmail.com","fone":"(84) 98888-8888","senha":"jo1234","tipoUsuario":"CLIENTE"},{"id":2,"nome":"manu","email":"manu@gmail.com","fone":"(84) 98888-8888","senha":"manu1234","tipoUsuario":"ADMIN"},{"id":3,"nome":"victor","email":"joao@gmail.com","fone":"1992929292","senha":"victor1234","tipoUsuario":"CLIENTE"},{"id":4,"nome":"gilbert","email":"gilbert@gmail.com","fone":"222222","senha":"g1234","tipoUsuario":"CLIENTE"}]

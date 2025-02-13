@@ -20,11 +20,13 @@ public class Exemplar implements Objeto{
     }
 
     public void setEdicao(int edicao){
-        this.edicao = edicao;
+        if (edicao > 0) this.edicao = edicao;
+        else throw new IllegalArgumentException("Edição inválida");
     }
 
     public void setEditora(String editora){
-        this.editora = editora;
+        if (editora != "") this.editora = editora;
+        else throw new IllegalArgumentException("Editora inválida");
     }
 
     public void setSituacao(Boolean situacao){

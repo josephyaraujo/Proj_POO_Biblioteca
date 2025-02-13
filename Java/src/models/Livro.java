@@ -18,11 +18,13 @@ public class Livro implements Objeto{
     }
 
     public void setTitulo(String t){
-        this.titulo = t;
+        if (t != "") this.titulo = t;
+        else throw new IllegalArgumentException("Título do livro não pode ser vazio");
     }
 
     public void setAutor(String a){
-        this.autor = a;
+        if (a != "") this.autor = a;
+        else throw new IllegalArgumentException("Autor não pode ser vazio");
     }
 
     public void setAno(int ano){
