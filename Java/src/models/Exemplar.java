@@ -66,6 +66,6 @@ public class Exemplar implements Objeto{
     }
 
     public String toString(){
-        return String.format("Exemplar \n ID = %s \n Edição = %s \n Editora = %s \n Situacao = %s \n Id Livro = %d \n Id genero = %s", this.id, this.edicao, this.editora, this.situacao, this.idLivro, this.idGenero);
+        return String.format("ID = %s \n Edição = %s \n Editora = %s \n Situacao = %s \n Id Livro = %d \n Id genero = %s", this.id, this.edicao, this.editora, this.situacao, this.idLivro, this.idGenero);
     }
 }

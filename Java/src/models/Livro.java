@@ -56,7 +56,7 @@ public class Livro implements Objeto{
     }
 
     public String toString(){
-        return String.format("Livro \n ID = %s \n Título = %s \n Autor = %s \n Ano = %s \n Id genero = %s", this.id, this.titulo, this.autor, this.ano, this.idGenero);
+        return String.format("ID = %s \n Título = %s \n Autor = %s \n Ano = %s \n Id genero = %s", this.id, this.titulo, this.autor, this.ano, this.idGenero);
     }
 
 }

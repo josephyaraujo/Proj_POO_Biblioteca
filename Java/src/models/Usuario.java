@@ -28,12 +28,20 @@ public class Usuario implements Objeto{
     }
 
     public void setEmail(String email){
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email inválido");
+        }
+
         //Expressão regular \\ - dispensa o . $ - fim da string ^ - começo da string
         String regex = "^[a-zA-Z0-9._%+-]+@gmail\\.com$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
-        if (email != "" || matcher.matches()) this.email = email;
-        else throw new IllegalArgumentException("Email inválido");
+        
+        if (matcher.matches()) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Email inválido");
+        }
     }
 
     public void setFone(String fone){

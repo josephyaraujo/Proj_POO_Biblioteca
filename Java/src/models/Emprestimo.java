@@ -73,6 +73,6 @@ public class Emprestimo implements Objeto{
     }
 
     public String toString(){
-        return String.format("Emprestimo \n ID = %s \n Data = %s \n Data de devolução = %s \n Prazo extendido = %s \n Id exemplar = %d \n Id usuario = %s", this.id, this.data, this.dataDevolucao, this.prazoExtendido, this.idExemplar, this.idUsuario);
+        return String.format("ID = %s \n Data = %s \n Data de devolução = %s \n Prazo extendido = %s \n Id exemplar = %d \n Id usuario = %s", this.id, this.data, this.dataDevolucao, this.prazoExtendido, this.idExemplar, this.idUsuario);
     }
 }

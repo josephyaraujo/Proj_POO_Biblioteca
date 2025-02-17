@@ -31,4 +31,25 @@ public class View {
         Usuario usu = new Usuario(0, nome, email, fone, senha, EnumUsuarios.CLIENTE);
         usuModelo.inserir(usu);
     }
+
+    public static void verExemplares(){
+        Exemplares exe = new Exemplares();
+        List<Exemplar> exemplares = exe.listar();
+
+        for (Exemplar e : exemplares) {
+            System.out.println(e);
+        }
+    }
+
+    public static Emprestimo consultarEmprestimo(int id) {
+        Emprestimos emp = new Emprestimos();
+        List<Emprestimo> emprestimos = emp.listar();
+
+        for (Emprestimo em : emprestimos) {
+            if (em.getIdUsuario() == id) {
+                return em;
+            }
+        }
+        return null;
+    }
 }
