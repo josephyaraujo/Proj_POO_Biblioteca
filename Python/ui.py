@@ -3,23 +3,58 @@ from models.Livro import Livros, Livro
 from models.Genero import Generos, Genero
 from models.Usuario import Usuario, Usuarios
 from models.EnumUsuarios import EnumUsuarios
-livros = Livros.listar()
-for l in livros:
-    print(l)
 
+import streamlit as st
+# from templates.manterClienteUI import ManterClienteUI
+# from templates.manterProdutoUI import ManterProdutoUI
+# from templates.manterCategoriaUI import ManterCategoriaUI
+# from templates.reajustarProdutoUI import ReajustarProduto
+# from templates.clienteProdutoUI import ClienteProdutoUI
+from templates.abrirContaUI import AbrirContaUI
+# from templates.visualizarPedidosUI import VisualizarPedidosUI
+from templates.usuarioLoginUI import UsuarioLoginUI
+from view.view import View
 
-u = Usuario(0, "josephy", "josephy@gmail.com", "(84) 98888-8888", "jo1234", "CLIENTE")
-Usuarios.inserir(u)
+class IndexUI:
+    def menu_visitante():
+        op = st.sidebar.selectbox("Menu", ["Entrar no sistema", "Abrir conta"])
+        if op == "Entrar no sistema": UsuarioLoginUI.main()
+        if op == "Abrir conta": AbrirContaUI.main()
 
-u = Usuario(0, "manu", "manu@gmail.com", "(84) 98888-8888", "manu1234", "ADMIN")
-Usuarios.inserir(u)
-# g = Genero(0, "terror")
-#Generos.inserir(g)
+    def menu_admin():
+        op = st.sidebar.selectbox("Menu", ["Cadastro de funcionário", "Cadastro de livros", "Cadastro de gênero"])
+        if op == "Cadastro de funcionário": ManterFuncionarioUI.main()
+        if op == "Cadastro de livros": ManterLivroUI.main()
+        if op == "Cadastro de gênero": ManterGeneroUI.main()
 
-#g2 = Genero(0, "romance")
-#Generos.inserir(g2)
+    def menu_funcionario():
+        op = st.sidebar.selectbox("Menu", ["Cadastro de exemplar", "Cadastro de empréstimo", "Consultar disponibilidades", "Gerenciar prazos", "Cadastro de livros"])
+        if op == "Cadastro de exemplar": ManterExemplarUI.exemplar_inserir()
+        if op == "Cadastro de empréstimo": ManterEmprestimoUI.emprestimo_inserir()
+        if op == "Consultar disponibilidades": ManterExemplarUI.exemplar_listar()
+        if op == "Gerenciar prazos": ManterEmprestimoUI.emprestimo_atualizar()
+        if op == "Cadastro de livros": ManterLivroUI.livro.inserir()
 
+    def sair_do_sistema():
+        if st.sidebar.button("Sair"):
+            del st.session_state["usuario_id"]
+            del st.session_state["usuario_nome"]
+            st.rerun()
 
-generos = Generos.listar()
-for g in generos:
-    print(g)
+    def sidebar():
+        if "usuario_id" not in st.session_state:
+            IndexUI.menu_visitante()
+        else:
+            admin = st.session_state["usuario_tipo_usuario"] == "ADMIN"
+
+            st.sidebar.write("Bem-vindo(a), "+ st.session_state["usuario_nome"])
+
+            if admin:IndexUI.menu_admin()
+            else:IndexUI.menu_funcionario()
+
+            IndexUI.sair_do_sistema()
+
+    def main():
+        IndexUI.sidebar()
+
+IndexUI.main()

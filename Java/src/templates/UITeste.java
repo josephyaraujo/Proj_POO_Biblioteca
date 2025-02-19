@@ -68,7 +68,7 @@ public class UITeste{
         int opMenu = 0;
         while (opMenu != 3){
             System.out.println("-----------------------");
-            System.out.println("|SISTEMA DE BIBLIOTECA|");
+            System.out.println("|MENU DO CLIENTE|");
             System.out.println("-----------------------");
             System.out.println("Seja bem-vindo(a) " + usuario.getNome());
             System.out.println("O que deseja?");
@@ -84,6 +84,7 @@ public class UITeste{
             } else if (opMenu == 2) {
                 System.out.println("------EMPRÉSTIMOS------");
                 Emprestimo e = View.consultarEmprestimo(usuario.getId());
+                System.out.println(e);
                 menuEmprestimo();
                 if (e != null){
                     System.out.println(e);
@@ -101,6 +102,10 @@ public class UITeste{
         while (opEmprestimo != 3){
             System.out.println("O que deseja?");
             System.out.println("1 - Solicitar aumento de prazo\n2 - Realizar devolução\n 3 - Voltar para tela inicial");
+            System.out.print("Digite sua opção: ");
+
+            opEmprestimo = input.nextInt();
+            input.nextLine();
             if (opEmprestimo == 1) {
 
             } else if (opEmprestimo == 2) {
