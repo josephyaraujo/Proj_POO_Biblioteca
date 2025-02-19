@@ -15,15 +15,23 @@ class Usuario:
         self.__id = id
     
     def set_nome(self, nome):
+        if not nome:
+            raise ValueError("Nome vazio")
         self.__nome = nome
     
     def set_email(self, email):
+        if not email:
+            raise ValueError("Email vazio")
         self.__email = email
 
     def set_fone(self, fone):
+        if not fone:
+            raise ValueError("Telefone vazio")
         self.__fone = fone
 
     def set_senha(self, senha):
+        if not senha:
+            raise ValueError("Senha vazia")
         self.__senha = senha
 
     def set_tipo_usuario(self, tipo_usuario):

@@ -6,51 +6,64 @@ from models.Genero import Genero, Generos
 
 class View:
     @staticmethod
-    def usuario_autenticar(email, senha):
-        usuarios = Usuario.listar()
-        for usuario in usuarios:
-            if usuario.get_tipo_usuario() == "CLIENTE":
-                raise ValueError("Cliente não tem acesso a essa página")
-            if usuario.get_email() == email and usuario.get_senha() == senha:
-                return {"id":usuario.get_id(), "nome": usuario.get_nome(), "tipo_usuario": usuario.get_tipo_usuario()}
-        return None
-    
+    def admin_listar():
+        return [usuario for usuario in Usuarios.listar() if usuario.get_tipo_usuario() == "ADMIN"]
     @staticmethod
-    def usuario_listar():
-        return Usuarios.listar()
-    
-    @staticmethod
-    def usuario_inserir(nome, email, fone, senha, tipo_usuario):
+    def admin_inserir(nome, email, fone, senha, tipo_usuario):
         usuarios = Usuarios.listar()
-        if not email:
-            raise ValueError("Email vazio")
-        if not nome:
-                raise ValueError("Nome vazio")
         for usuario in usuarios:
             if email == usuario.get_email():
                 raise ValueError("Email já cadastrado")
-            if tipo_usuario == "ADMIN":
+            if usuario.get_tipo_usuario() == "ADMIN":
                 raise ValueError("Usuário administrador já cadastrado")
-            
         u = Usuario(0, nome, email, fone, senha, tipo_usuario)
         Usuarios.inserir(u)
-
     @staticmethod
-    def usuario_atualizar(id, nome, email, fone, senha):
-        if not email:
-            raise ValueError("Email vazio")
-        if not nome:
-            raise ValueError("Nome vazio")
+    def admin_atualizar(id, nome, email, fone, senha):
         usuarios = Usuarios.listar()
         for usuario in usuarios:
             if email == usuario.get_email() and id != usuario.get_id():
                 raise ValueError("Email já cadastrado")
             if id == usuario.get_id():        
-                u = Usuarios(id, nome, email, fone, senha, usuario.get_tipo_usuario())
+                u = Usuarios(id, nome, email, fone, senha, "ADMIN")
         Usuarios.atualizar(u)
+    @staticmethod
+    def admin_excluir(id):
+        u = Usuario(id, "", "", "", "", "")
+        Usuarios.excluir(u)
 
     @staticmethod
-    def usuario_excluir(id):
+    def usuario_autenticar(email, senha):
+        usuarios = Usuarios.listar()
+        for usuario in usuarios:
+            if usuario.get_email() == email and usuario.get_senha() == senha and usuario.get_tipo_usuario() == "CLIENTE":
+                raise ValueError("Cliente não tem acesso a essa página")
+            if usuario.get_email() == email and usuario.get_senha() == senha:
+                return {"id":usuario.get_id(), "nome": usuario.get_nome(), "tipoUsuario": usuario.get_tipo_usuario()}
+        return None
+    
+    @staticmethod
+    def funcionario_listar():
+        return [usuario for usuario in Usuarios.listar() if usuario.get_tipo_usuario() == "FUNCIONARIO"]
+    @staticmethod
+    def funcionario_inserir(nome, email, fone, senha, tipo_usuario):
+        usuarios = Usuarios.listar()
+        for usuario in usuarios:
+            if email == usuario.get_email():
+                raise ValueError("Email já cadastrado")
+        u = Usuario(0, nome, email, fone, senha, tipo_usuario)
+        Usuarios.inserir(u)
+    @staticmethod
+    def funcionario_atualizar(id, nome, email, fone, senha):
+        usuarios = Usuarios.listar()
+        for usuario in usuarios:
+            if email == usuario.get_email() and id != usuario.get_id():
+                raise ValueError("Email já cadastrado")
+            if id == usuario.get_id():        
+                u = Usuarios(id, nome, email, fone, senha, "FUNCIONARIO")
+        Usuarios.atualizar(u)
+    @staticmethod
+    def funcionario_excluir(id):
         u = Usuario(id, "", "", "", "", "")
         Usuarios.excluir(u)
 
@@ -65,9 +78,7 @@ class View:
         generos = Generos.listar()
         for genero in generos:
             if descricao == genero.get_descricao():
-                raise ValueError("Genero ja cadastrado")
-        if not descricao:
-            raise ValueError("Descrição vazia")
+                raise ValueError("Gênero ja cadastrado")
         g = Genero(0, descricao)
         Generos.inserir(g)
     @staticmethod
@@ -75,9 +86,7 @@ class View:
         generos = Generos.listar()
         for genero in generos:
             if descricao == genero.get_descricao():
-                raise ValueError("Descrição ja cadastrada")
-        if not descricao:
-            raise ValueError("Descrição vazia")
+                raise ValueError("Gênero ja cadastrado")
         g = Genero(id, descricao)
         Generos.atualizar(g)
     @staticmethod
@@ -85,46 +94,29 @@ class View:
         g = Genero(id, "")
         Generos.excluir(g)
 
-    # @staticmethod
-    # def produto_listar():
-    #     return Produtos.listar()
-    # @staticmethod
-    # def produto_inserir(descricao, preco, estoque, id_categoria):
-    #     if not descricao:
-    #         raise ValueError("Descrição vazia")
-    #     if not id_categoria:
-    #         raise ValueError("Categoria vazia")
-    #     if preco <= 0:
-    #         raise ValueError("Preço inválido")
-    #     if estoque <= 0:
-    #         raise ValueError("Estoque inválido")
-    #     p = Produto(0, descricao, preco, estoque, id_categoria)
-    #     Produtos.inserir(p)
-    # @staticmethod
-    # def produto_atualizar(id, descricao, preco, estoque, id_categoria):
-    #     if not descricao:
-    #         raise ValueError("Descrição vazia")
-    #     if not id_categoria:
-    #         raise ValueError("Categoria vazia")
-    #     if preco <= 0:
-    #         raise ValueError("Preço inválido")
-    #     if estoque <= 0:
-    #         raise ValueError("Estoque inválido")
-    #     p = Produto(id, descricao, preco, estoque, id_categoria)
-    #     Produtos.atualizar(p)
-    # @staticmethod
-    # def produto_excluir(id):
-    #     p = Produto(id, "", 0, 0, None)
-    #     Produtos.excluir(p)
-    # @staticmethod
-    # def produto_reajustar(percentual, id):
-    #     if not percentual:
-    #         raise ValueError("Percentual vazio")
-
-    #     for obj in View.produto_listar():
-    #         if obj.get_id() == id:
-    #             p = Produto(obj.get_id(), obj.get_descricao(), (obj.get_preco() * percentual) + obj.get_preco(), obj.get_estoque(), obj.get_id_categoria())
-    #             Produtos.atualizar(p)
+    @staticmethod
+    def livro_listar():
+        return Livros.listar()
+    @staticmethod
+    def livro_inserir(titulo, autor, ano, id_genero):
+        livros = Livros.listar()
+        for livro in livros:
+            if titulo == livro.get_titulo() and autor == livro.get_autor() and ano == livro.get_ano():
+                raise ValueError("Livro já cadastrado")
+        l = Livro(0, titulo, autor, ano, id_genero)
+        Livros.inserir(l)
+    @staticmethod
+    def livro_atualizar(id, titulo, autor, ano, id_genero):
+        livros = Livros.listar()
+        for livro in livros:
+            if titulo == livro.get_titulo() and autor == livro.get_autor() and ano == livro.get_ano():
+                raise ValueError("Livro já cadastrado")
+        l = Livro(id, titulo, autor, ano, id_genero)
+        Livros.atualizar(l)
+    @staticmethod
+    def livro_excluir(id):
+        l = Livro(id, "", 0, 0, None)
+        Livros.excluir(l)
         
     # @staticmethod
     # def venda_inserir(carrinho, total, id_cliente):

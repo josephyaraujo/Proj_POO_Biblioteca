@@ -2,27 +2,35 @@ import json
 from models.Modelo import Modelo
 
 class Livro:
-    def __init__(self, id, titulo, autor, ano, id_genero):
+    def __init__(self, id, titulo, autor, ano, idGenero):
         self.set_id(id)
         self.set_titulo(titulo)
         self.set_autor(autor)
         self.set_ano(ano)
-        self.set_id_genero(id_genero)
+        self.set_id_genero(idGenero)
 
     def set_id(self, id):
         self.__id = id
     
     def set_titulo(self, titulo):
+        if not titulo:
+            raise ValueError("Titulo vazio")
         self.__titulo = titulo
     
     def set_autor(self, autor):
+        if not autor:
+            raise ValueError("Autor vazio")
         self.__autor = autor
 
     def set_ano(self, ano):
+        if ano <= 1000:
+            raise ValueError("Ano inválido")
         self.__ano = ano
 
-    def set_id_genero(self, id_genero):
-        self.__id_genero = id_genero
+    def set_id_genero(self, idGenero):
+        if not idGenero:
+            raise ValueError("Gênero vazio")
+        self.__id_genero = idGenero
 
     def get_id(self):
         return self.__id
@@ -44,7 +52,7 @@ class Livro:
     
     def to_dict(self):
         return {
-            "id": self.get_id(), "titulo": self.get_titulo(), "autor" : self.get_autor(), "ano" : self.get_ano(), "id genero" : self.get_id_genero()
+            "id": self.get_id(), "titulo": self.get_titulo(), "autor" : self.get_autor(), "ano" : self.get_ano(), "idGenero" : self.get_id_genero()
         }
     
 class Livros(Modelo):

@@ -2,13 +2,13 @@ import json
 from models.Modelo import Modelo
 
 class Emprestimo:
-    def __init__(self, id, data, data_devolucao, prazo_extendido, id_exemplar, id_usuario):
+    def __init__(self, id, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario):
         self.set_id(id)
         self.set_data(data)
-        self.set_data_devolucao(data_devolucao)
-        self.prazo_extendido(prazo_extendido)
-        self.id_exemplar(id_exemplar)
-        self.id_usuario(id_usuario)
+        self.set_data_devolucao(dataDevolucao)
+        self.prazo_extendido(prazoExtendido)
+        self.id_exemplar(idExemplar)
+        self.id_usuario(idUsuario)
 
     def set_id(self, id):
         self.__id = id
@@ -16,17 +16,17 @@ class Emprestimo:
     def set_data(self, data):
         self.__data = data
     
-    def set_data_devolucao(self, data_devolucao):
-        self.__data_devolucao = data_devolucao
+    def set_data_devolucao(self, dataDevolucao):
+        self.__data_devolucao = dataDevolucao
 
-    def set_prazo_extendido(self, prazo_extendido):
-        self.__prazo_extendido = prazo_extendido
+    def set_prazo_extendido(self, prazoExtendido):
+        self.__prazo_extendido = prazoExtendido
 
-    def set_id_exemplar(self, id_exemplar):
-        self.__id_exemplar = id_exemplar
+    def set_id_exemplar(self, idExemplar):
+        self.__id_exemplar = idExemplar
 
-    def set_id_usuario(self, id_usuario):
-        self.__id_usuario = id_usuario
+    def set_id_usuario(self, idUsuario):
+        self.__id_usuario = idUsuario
 
     def get_id(self):
         return self.__id

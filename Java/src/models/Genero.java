@@ -2,17 +2,17 @@ public class Genero implements Objeto{
     private int id;
     private String descricao;
 
-    public Genero(int id, String d){
+    public Genero(int id, String descricao){
         setId(id);
-        setDescricao(d);
+        setDescricao(descricao);
     }
 
     public void setId(int id){
         this.id = id;
     }
 
-    public void setDescricao(String d){
-        if (d != "") this.descricao = d;
+    public void setDescricao(String descricao){
+        if (descricao != "") this.descricao = descricao;
         else throw new IllegalArgumentException("Descrição vazia");
     }
 

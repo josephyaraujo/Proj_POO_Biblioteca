@@ -2,13 +2,13 @@ import json
 from models.Modelo import Modelo
 
 class Exemplar:
-    def __init__(self, id, edicao, editora, situacao, id_livro, id_genero):
+    def __init__(self, id, edicao, editora, situacao, idLivro, idGenero):
         self.set_id(id)
         self.set_edicao(edicao)
         self.set_editora(editora)
         self.set_situacao(situacao)
-        self.set_id_livro(id_livro)
-        self.set_id_genero(id_genero)
+        self.set_id_livro(idLivro)
+        self.set_id_genero(idGenero)
 
     def set_id(self, id):
         self.__id = id
@@ -22,11 +22,11 @@ class Exemplar:
     def set_situacao(self, situacao):
         self.__situacao = situacao
 
-    def set_id_livro(self, id_livro):
-        self.__id_livro = id_livro
+    def set_id_livro(self, idLivro):
+        self.__id_livro = idLivro
 
-    def set_id_genero(self, id_genero):
-        self.__id_genero = id_genero
+    def set_id_genero(self, idGenero):
+        self.__id_genero = idGenero
 
     def get_id(self):
         return self.__id

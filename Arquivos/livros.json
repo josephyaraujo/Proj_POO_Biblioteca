@@ -1,1 +1,16 @@
-[{"id":1,"titulo":"amor","autor":"joao","ano":2025,"idGenero":1}]
+[
+     {
+          "id": 1,
+          "titulo": "Boneco de neve",
+          "autor": "Robert",
+          "ano": 2012,
+          "idGenero": 1
+     },
+     {
+          "id": 2,
+          "titulo": "Jogos Vorazes",
+          "autor": "Madonna",
+          "ano": 2015,
+          "idGenero": 4
+     }
+]

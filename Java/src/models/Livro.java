@@ -5,10 +5,10 @@ public class Livro implements Objeto{
     private int ano;
     private int idGenero;
 
-    public Livro(int id, String t, String a, int ano, int idGenero){
+    public Livro(int id, String titulo, String autor, int ano, int idGenero){
         setId(id);
-        setTitulo(t);
-        setAutor(a);
+        setTitulo(titulo);
+        setAutor(autor);
         setAno(ano);
         setIdGenero(idGenero);
     }
@@ -17,13 +17,13 @@ public class Livro implements Objeto{
         this.id = id;
     }
 
-    public void setTitulo(String t){
-        if (t != "") this.titulo = t;
+    public void setTitulo(String titulo){
+        if (titulo != "") this.titulo = titulo;
         else throw new IllegalArgumentException("Título do livro não pode ser vazio");
     }
 
-    public void setAutor(String a){
-        if (a != "") this.autor = a;
+    public void setAutor(String autor){
+        if (autor != "") this.autor = autor;
         else throw new IllegalArgumentException("Autor não pode ser vazio");
     }
 

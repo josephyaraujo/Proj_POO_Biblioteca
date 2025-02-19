@@ -58,7 +58,7 @@ public class UITeste{
             String senha = input.nextLine();
 
             View.clienteInserir(nome, email, telefone, senha, EnumUsuarios.CLIENTE);
-            System.out.println("Cadastro realizado com sucesso! Entre na sua conta|");
+            System.out.println("Cadastro realizado com sucesso! Entre na sua conta");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

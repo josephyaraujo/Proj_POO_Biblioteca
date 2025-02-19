@@ -10,6 +10,8 @@ class Genero:
         self.__id = id
     
     def set_descricao(self, descricao):
+        if not descricao:
+            raise ValueError("Descrição vazia")
         self.__descricao = descricao
 
     def get_id(self):
