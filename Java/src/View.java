@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class View {
     public static Usuario usuarioAutenticar(String email, String senha){
@@ -38,15 +41,40 @@ public class View {
         return exemplares;
     }
 
-    public static Emprestimo consultarEmprestimo(int id) {
+    public static List<Emprestimo> consultarEmprestimos(int id) {
         Emprestimos emp = new Emprestimos();
         List<Emprestimo> emprestimos = emp.listar();
+        List<Emprestimo> emprestimosUsuario = new ArrayList<>();
 
         for (Emprestimo em : emprestimos) {
             if (em.getIdUsuario() == id) {
-                return em;
+                emprestimosUsuario.add(em);
             }
         }
-        return null;
+        return emprestimosUsuario;
+    }
+
+    public static Exemplar exemplarListarId(int id) {
+        Exemplares ex = new Exemplares();
+        return ex.listarId(id);
+    }
+
+    public static void aumentarPrazo(int prazoExtendido, int id, int idEmprestimo) {
+        Emprestimos emp = new Emprestimos();
+        List<Emprestimo> emprestimos = emp.listar();
+        Emprestimo emAtualizado = null;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        for (Emprestimo em : emprestimos) {
+            if (em.getIdUsuario() == id && em.getId() == idEmprestimo) {
+                LocalDate dataDevolucao = LocalDate.parse(em.getDataDevolucao(), formatter);
+                LocalDate novaDataDevolucao = dataDevolucao.plusDays(prazoExtendido);
+                String novaDataDevolucaoStr = novaDataDevolucao.format(formatter);
+
+                emAtualizado = new Emprestimo(em.getId(), em.getData(), novaDataDevolucaoStr, em.getPrazoExtendido() + prazoExtendido, em.getIdExemplar(), em.getIdUsuario());
+                break;
+            }
+        }
+        emp.atualizar(emAtualizado);
     }
 }

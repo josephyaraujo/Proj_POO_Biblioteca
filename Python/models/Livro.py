@@ -48,7 +48,7 @@ class Livro:
         return self.__id_genero
     
     def __str__(self):
-        return f"ID = {self.get_id()}  |  TITULO = {self.get_titulo()}  |  AUTOR = {self.get_autor()}  |  ANO = {self.get_ano()} | ID GENERO = {self.get_id_genero()}"
+        return f"TITULO = {self.get_titulo()}  |  AUTOR = {self.get_autor()}  |  ANO = {self.get_ano()} | GENERO = {self.get_id_genero()}"
     
     def to_dict(self):
         return {

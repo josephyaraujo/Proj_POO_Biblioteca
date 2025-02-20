@@ -51,7 +51,7 @@ class ManterFuncionarioUI:
                 '_Usuario__email': 'E-mail',
                 '_Usuario__fone': 'Fone',
                 '_Usuario__senha': 'Senha',
-                '_Usuario__tipo_usuario': 'Cargo'
+                '_Usuario__tipo_usuario': 'Tipo'
             }, inplace=True)
             st.dataframe(df, hide_index=True)
 

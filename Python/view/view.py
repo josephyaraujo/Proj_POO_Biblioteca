@@ -93,10 +93,6 @@ class View:
         Generos.inserir(g)
     @staticmethod
     def genero_atualizar(id, descricao):
-        generos = Generos.listar()
-        for genero in generos:
-            if descricao == genero.get_descricao():
-                raise ValueError("Gênero ja cadastrado")
         g = Genero(id, descricao)
         Generos.atualizar(g)
     @staticmethod
@@ -120,10 +116,6 @@ class View:
         return Livros.listar_id(id)
     @staticmethod
     def livro_atualizar(id, titulo, autor, ano, id_genero):
-        livros = Livros.listar()
-        for livro in livros:
-            if titulo == livro.get_titulo() and autor == livro.get_autor() and ano == livro.get_ano():
-                raise ValueError("Livro já cadastrado")
         l = Livro(id, titulo, autor, ano, id_genero)
         Livros.atualizar(l)
     @staticmethod
@@ -138,7 +130,7 @@ class View:
     def exemplar_inserir(edicao, editora, situacao, idLivro, idGenero):
         exemplares = Exemplares.listar()
         for exemplar in exemplares:
-            if edicao == exemplar.get_edicao() and editora == exemplar.get_editora() and idLivro == exemplar.get_idLivro():
+            if edicao == exemplar.get_edicao() and editora == exemplar.get_editora() and idLivro == exemplar.get_id_livro():
                 raise ValueError("Exemplar já cadastrado")
         ex = Exemplar(0, edicao, editora, situacao, idLivro, idGenero)
         Exemplares.inserir(ex)
@@ -147,18 +139,14 @@ class View:
         return Exemplares.listar_id(id)
     @staticmethod
     def exemplar_atualizar(id, edicao, editora, situacao, idLivro, idGenero):
-        exemplares = Exemplares.listar()
-        for exemplar in exemplares:
-            if edicao == exemplar.get_edicao() and editora == exemplar.get_editora() and idLivro == exemplar.get_idLivro():
-                raise ValueError("Exemplar já cadastrado")
         ex = Exemplar(id, edicao, editora, situacao, idLivro, idGenero)
-        Exemplar.atualizar(ex)
+        Exemplares.atualizar(ex)
     @staticmethod
     def exemplar_excluir(id):
         exemplares = Exemplares.listar()
         for exemplar in exemplares:
             if id == exemplar.get_id():
-                ex = Exemplar(id, exemplar.get_edicao(), exemplar.get_editora(), exemplar.get_situcao(), exemplar.get_idLivro(), exemplar.get_idGenero())
+                ex = Exemplar(id, exemplar.get_edicao(), exemplar.get_editora(), exemplar.get_situcao(), exemplar.get_id_livro(), exemplar.get_id_genero())
                 Exemplares.excluir(ex)
 
     @staticmethod
@@ -168,7 +156,7 @@ class View:
     def emprestimo_inserir(data, dataDevolucao, prazoExtendido, idExemplar, idUsuario):
         emprestimos = Emprestimos.listar()
         for emprestimo in emprestimos:
-            if idExemplar == emprestimo.get_idExemplar() and idUsuario == emprestimo.get_idUsuario():
+            if idExemplar == emprestimo.get_id_exemplar() and idUsuario == emprestimo.get_id_usuario():
                 raise ValueError("Emprestimo já cadastrado")
         em = Emprestimo(0, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario)
         Emprestimos.inserir(em)
@@ -177,10 +165,6 @@ class View:
         return Emprestimos.listar_id(id)
     @staticmethod
     def emprestimo_atualizar(id, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario):
-        emprestimos = Emprestimos.listar()
-        for emprestimo in emprestimos:
-            if  idExemplar == emprestimo.get_idExemplar() and idUsuario == emprestimo.get_idUsuario():
-                raise ValueError("Emprestimo já cadastrado")
         em = Emprestimo(id, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario)
         Emprestimos.atualizar(em)
     @staticmethod

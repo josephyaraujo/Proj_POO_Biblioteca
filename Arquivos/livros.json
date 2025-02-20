@@ -12,5 +12,12 @@
           "autor": "Madonna",
           "ano": 2015,
           "idGenero": 4
+     },
+     {
+          "id": 3,
+          "titulo": "Assim que acaba",
+          "autor": "Collen Hoover",
+          "ano": 2016,
+          "idGenero": 2
      }
 ]

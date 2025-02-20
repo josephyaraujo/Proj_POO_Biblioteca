@@ -14,18 +14,26 @@ class Emprestimo:
         self.__id = id
     
     def set_data(self, data):
+        if not data:
+            raise ValueError("Campo data não pode ser vazio.")
         self.__data = data
     
     def set_data_devolucao(self, dataDevolucao):
+        if not dataDevolucao:
+            raise ValueError("Campo data de devolução não pode ser vazio.")
         self.__data_devolucao = dataDevolucao
 
     def set_prazo_extendido(self, prazoExtendido):
         self.__prazo_extendido = prazoExtendido
 
     def set_id_exemplar(self, idExemplar):
+        if not idExemplar:
+            raise ValueError("Campo exemplar não pode ser vazio.")
         self.__id_exemplar = idExemplar
 
     def set_id_usuario(self, idUsuario):
+        if not idUsuario:
+            raise ValueError("Campo usuário não pode ser vazio.")
         self.__id_usuario = idUsuario
 
     def get_id(self):
@@ -47,7 +55,7 @@ class Emprestimo:
         return self.__id_usuario
     
     def __str__(self):
-        return f"ID = {self.get_id()}  |  Data = {self.get_data()}  |  DATA DEVOLUCAO = {self.get_data_devolucao()}  |  PRAZO EXTENDIDO = {self.get_prazo_extendido()} | ID EXEMPLAR = {self.get_id_exemplar()} | ID USUARIO = {self.get_id_usuario()}"
+        return f"Data = {self.get_data()}  |  DATA DEVOLUCAO = {self.get_data_devolucao()}  |  PRAZO EXTENDIDO = {self.get_prazo_extendido()} | EXEMPLAR = {self.get_id_exemplar()} | USUARIO = {self.get_id_usuario()}"
     
     def to_dict(self):
         return {

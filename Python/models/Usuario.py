@@ -65,7 +65,7 @@ class Usuario:
         return self.__tipo_usuario
     
     def __str__(self):
-        return f"ID = {self.get_id()}  |  NOME = {self.get_nome()}  |  EMAIL = {self.get_email()}  |  FONE = {self.get_fone()} | SENHA = {self.get_senha()} | TIPO USUARIO = {self.get_tipo_usuario()}"
+        return f"NOME = {self.get_nome()}  |  EMAIL = {self.get_email()}  |  FONE = {self.get_fone()} | SENHA = {self.get_senha()} | TIPO USUARIO = {self.get_tipo_usuario()}"
     
     def to_dict(self):
         return {

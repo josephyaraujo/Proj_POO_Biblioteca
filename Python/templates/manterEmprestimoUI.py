@@ -28,19 +28,30 @@ class ManterEmprestimoUI:
             return
         else:
             cliente = st.selectbox("Selecione a conta do cliente", clientes)
+        
+        emprestimos_ativos = [e for e in View.emprestimo_listar() if e.get_id_usuario() == cliente.get_id() and e.get_data_devolucao() >= datetime.datetime.now().strftime("%d/%m/%Y")]
+        if len(emprestimos_ativos) >= 3:
+            st.warning("Este cliente já possui 3 empréstimos ativos. Não é possível realizar um novo empréstimo.")
+            return
+    
         exemplares = View.exemplar_listar()
-        if len(exemplares) == 0:
-            st.warning("Nenhum exemplar cadastrado. Cadastre um exemplar antes de efetuar um empréstimo.")
+        exemplares_disponiveis = [e for e in exemplares if e.get_situacao() is True]
+
+        if len(exemplares_disponiveis) == 0:
+            st.warning("Nenhum exemplar disponível para empréstimo.")
             return
         else:
-            exemplar = st.selectbox("Selecione o exemplar que o cliente deseja inserir", exemplares)
+            exemplar = st.selectbox("Selecione o exemplar que o cliente deseja inserir", exemplares_disponiveis)
+
         data = datetime.datetime.now()
         data_formatada = data.strftime("%d/%m/%Y")
         data_devolucao = st.date_input("Informe a data de encerramento do empréstimo", value = "today")
         data_dev_formatada = data_devolucao.strftime("%d/%m/%Y")
-        if st.button("Inserir"):
+
+        if st.button("Confirmar empréstimo"):
             try:
                 View.emprestimo_inserir(data_formatada, data_dev_formatada, 0, exemplar.get_id(), cliente.get_id())
+                View.exemplar_atualizar(exemplar.get_id(), exemplar.get_edicao(), exemplar.get_editora(), False, exemplar.get_id_livro(), exemplar.get_id_genero())
                 st.success("Empréstimo cadastrado")
                 time.sleep(2)
                 st.rerun()
@@ -50,15 +61,18 @@ class ManterEmprestimoUI:
 
     @staticmethod
     def emprestimo_listar():
-        st.header("Emprestimos ativos na biblioteca")
+        st.header("Empréstimos ativos na biblioteca")
         emprestimos = View.emprestimo_listar()
         exemplares = View.exemplar_listar()
         clientes = View.cliente_listar()
+        livros = View.livro_listar()
         if len(emprestimos) == 0:
-            st.write("Nenhum emprestimo cadastrado")
+            st.write("Nenhum empréstimo cadastrado.")
         else:
             dic = []
             for emprestimo in emprestimos: 
+                exemplar = View.exemplar_listar_id(emprestimo.get_id_exemplar())
+                livro = next((l.get_titulo() for l in livros if l.get_id() == exemplar.get_id_livro()), "Desconhecido")
                 nome_exemplar = next((e.get_edicao() for e in exemplares if e.get_id() == emprestimo.get_id_exemplar()), "Desconhecido")
                 nome_cliente = next((c.get_nome() for c in clientes if c.get_id() == emprestimo.get_id_usuario()), "Desconhecido")
 
@@ -67,7 +81,7 @@ class ManterEmprestimoUI:
                     "Data": emprestimo.get_data(),
                     "Data de devolução": emprestimo.get_data_devolucao(),
                     "Dias de prazo extendido": emprestimo.get_prazo_extendido(),
-                    "Exemplar": nome_exemplar,
+                    "Exemplar": f"{livro} (Edição {nome_exemplar})",
                     "Cliente":nome_cliente
                 })
 
@@ -85,13 +99,10 @@ class ManterEmprestimoUI:
             selecionado = st.selectbox("Atualização de emprestimo", emprestimos)
             data_devolucao = st.date_input("Informe a data de devolução", value = "today", key="data_devolucao_atualizar")
             data_dev_formatada = data_devolucao.strftime("%d/%m/%Y")
-            exemplares_opcoes = {e.get_edicao(): e for e in exemplares}
-            exemplar = st.selectbox("Selecione o exemplar", list(exemplares_opcoes.keys()), 
-                                          index=list(exemplares_opcoes.keys()).index(next((e.get_edicao() for e in exemplares if e.get_id() == selecionado.get_id_exemplar()), list(exemplares_opcoes.keys())[0])))
             
             if st.button("Atualizar"):
                 try:
-                    View.livro_atualizar(selecionado.get_data(), data_dev_formatada, selecionado.get_prazo_extendido(), exemplar.get_id(), selecionado.get_id_usuario())
+                    View.livro_atualizar(selecionado.get_data(), data_dev_formatada, selecionado.get_prazo_extendido(), selecionado.get_id_exemplar(), selecionado.get_id_usuario())
                     st.success("Empréstimo atualizado")
                     time.sleep(2)
                     st.rerun()
@@ -102,13 +113,16 @@ class ManterEmprestimoUI:
     @classmethod 
     def emprestimo_excluir(cls):
         emprestimos = View.emprestimo_listar()
+        exemplares = View.exemplar_listar()
         if (len(emprestimos) == 0):
             st.write("Nenhum empréstimo cadastrado")
         else:
             selecionado = st.selectbox("Fechamento de empréstimo", emprestimos)
        
-            if st.button("Excluir"):
+            if st.button("Fechar"):
+                exemplar = View.exemplar_listar_id(selecionado.get_id_exemplar())
                 View.exemplar_excluir(selecionado.get_id())
+                View.exemplar_atualizar(exemplar.get_id(), exemplar.get_edicao(), exemplar.get_editora(), True, exemplar.get_id_livro(), exemplar.get_id_genero())
                 st.success("Empréstimo finalizado")
                 time.sleep(2)
                 st.rerun()

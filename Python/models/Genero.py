@@ -11,7 +11,7 @@ class Genero:
     
     def set_descricao(self, descricao):
         if not descricao:
-            raise ValueError("Descrição vazia")
+            raise ValueError("Campo descrição não pode ser vazio")
         self.__descricao = descricao
 
     def get_id(self):
@@ -21,7 +21,7 @@ class Genero:
         return self.__descricao
     
     def __str__(self):
-        return f"ID = {self.get_id()}  | DESCRICAO = {self.get_descricao()}"
+        return f"DESCRICAO = {self.get_descricao()}"
     
     def to_dict(self):
         return {

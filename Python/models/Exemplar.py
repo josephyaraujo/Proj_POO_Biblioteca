@@ -14,18 +14,30 @@ class Exemplar:
         self.__id = id
     
     def set_edicao(self, edicao):
+        if not edicao:
+            raise ValueError("Campo edição não pode ser vazio.")
+        if edicao < 1:
+            raise ValueError("Edição inválida.")
         self.__edicao = edicao
     
     def set_editora(self, editora):
+        if not editora:
+            raise ValueError("Campo editora não pode ser vazio.")
         self.__editora = editora
 
     def set_situacao(self, situacao):
+        if situacao == "":
+            raise ValueError("Campo situação não pode ser vazio.")
         self.__situacao = situacao
 
     def set_id_livro(self, idLivro):
+        if not idLivro:
+            raise ValueError("Campo livro não pode ser vazio.")
         self.__id_livro = idLivro
 
     def set_id_genero(self, idGenero):
+        if not idGenero:
+            raise ValueError("Campo gênero não pode ser vazio.")
         self.__id_genero = idGenero
 
     def get_id(self):
@@ -47,11 +59,19 @@ class Exemplar:
         return self.__id_genero
     
     def __str__(self):
-        return f"ID = {self.get_id()}  |  EDICAO = {self.get_edicao()}  |  EDITORA = {self.get_editora()}  |  SITUACAO = {self.get_situacao()} | ID LIVRO = {self.get_id_livro()} | ID GENERO = {self.get_id_genero()}"
+        from view.view import View
+        situacao = "Disponível" if self.get_situacao() else "Emprestado"
+
+        livro = View.livro_listar()
+        genero = View.genero_listar()
+
+        nome_livro = next((l.get_titulo() for l in livro if l.get_id() == self.get_id_livro()), "Desconhecido")
+        nome_genero = next((g.get_descricao() for g in genero if g.get_id() == self.get_id_genero()), "Desconhecido")
+        return f"EDICAO = {self.get_edicao()}  |  EDITORA = {self.get_editora()}  |  SITUACAO = {situacao} | LIVRO = {nome_livro} | GENERO = {nome_genero}"
     
     def to_dict(self):
         return {
-            "id": self.get_id(), "edicao": self.get_edicao(), "editora" : self.get_editora(), "situacao" : self.get_situacao(), "idLivro" : self.get_id_livro(), "id genero" : self.get_id_genero()
+            "id": self.get_id(), "edicao": self.get_edicao(), "editora" : self.get_editora(), "situacao" : self.get_situacao(), "idLivro" : self.get_id_livro(), "idGenero" : self.get_id_genero()
         }
 class Exemplares(Modelo):
     @classmethod

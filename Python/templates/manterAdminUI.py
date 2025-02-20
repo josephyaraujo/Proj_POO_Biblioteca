@@ -36,7 +36,7 @@ class ManterAdminUI:
         fone = st.text_input("Informe o fone", admin[0].get_fone())
         senha = st.text_input("Informe a senha", type="password", key="senha_admin")
             
-        if st.button("Atualizar"):
+        if st.button("Atualizar informações"):
             try:
                 View.admin_atualizar(admin.get_id(), nome, email, fone, senha, "ADMIN")
                 st.success("Informações atualizadas")
