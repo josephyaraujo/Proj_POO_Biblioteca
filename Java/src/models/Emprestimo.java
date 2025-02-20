@@ -37,7 +37,7 @@ public class Emprestimo implements Objeto{
 
     public void setPrazoExtendido(int prazoExtendido){
         if (prazoExtendido < 0 || prazoExtendido >= 10) this.prazoExtendido = prazoExtendido;
-        else throw new IllegalArgumentException("Valor de prazo extendido inválido.");
+        else throw new IllegalArgumentException("Você só pode extender o prazo em até 10 dias.");
     }
 
     public void setIdExemplar(int idExemplar){

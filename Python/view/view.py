@@ -29,8 +29,11 @@ class View:
         Usuarios.atualizar(u)
     @staticmethod
     def admin_excluir(id):
-        u = Usuario(id, "", "", "", "", "")
-        Usuarios.excluir(u)
+        usuarios = Usuarios.listar()
+        for usuario in usuarios:
+            if id == usuario.get_id():
+                u = Usuario(id, usuario.get_nome(), usuario.get_email(), usuario.get_fone(), usuario.get_senha(), "ADMIN")
+                Usuarios.excluir(u)
 
     @staticmethod
     def usuario_autenticar(email, senha):
@@ -41,6 +44,10 @@ class View:
             if usuario.get_email() == email and usuario.get_senha() == senha:
                 return {"id":usuario.get_id(), "nome": usuario.get_nome(), "tipoUsuario": usuario.get_tipo_usuario()}
         return None
+    
+    @staticmethod
+    def cliente_listar():
+        return [usuario for usuario in Usuarios.listar() if usuario.get_tipo_usuario() == "CLIENTE"]
     
     @staticmethod
     def funcionario_listar():
@@ -64,8 +71,11 @@ class View:
         Usuarios.atualizar(u)
     @staticmethod
     def funcionario_excluir(id):
-        u = Usuario(id, "", "", "", "", "")
-        Usuarios.excluir(u)
+        usuarios = Usuarios.listar()
+        for usuario in usuarios:
+            if id == usuario.get_id():
+                u = Usuario(id, usuario.get_nome(), usuario.get_email(), usuario.get_fone(), usuario.get_senha(), "FUNCIONARIO")
+                Usuarios.excluir(u)
 
     @staticmethod
     def genero_listar():
@@ -91,7 +101,7 @@ class View:
         Generos.atualizar(g)
     @staticmethod
     def genero_excluir(id):
-        g = Genero(id, "")
+        g = Genero(id, "genero")
         Generos.excluir(g)
 
     @staticmethod
@@ -106,6 +116,9 @@ class View:
         l = Livro(0, titulo, autor, ano, id_genero)
         Livros.inserir(l)
     @staticmethod
+    def livro_listar_id(id):
+        return Livros.listar_id(id)
+    @staticmethod
     def livro_atualizar(id, titulo, autor, ano, id_genero):
         livros = Livros.listar()
         for livro in livros:
@@ -115,65 +128,65 @@ class View:
         Livros.atualizar(l)
     @staticmethod
     def livro_excluir(id):
-        l = Livro(id, "", 0, 0, None)
+        l = Livro(id, "livro", 0, 0, None)
         Livros.excluir(l)
         
-    # @staticmethod
-    # def venda_inserir(carrinho, total, id_cliente):
-    #     compra = False
-    #     for venda in Vendas.listar():
-    #         if venda.get_id_cliente() == id_cliente and venda.get_carrinho() == False:  
-    #             compra = True
-    #             break
-    #     if compra == False:
-    #         v = Venda(0, None, carrinho, total, id_cliente)
-    #         Vendas.inserir(v)
-    # @staticmethod
-    # def venda_confirmar(id_cliente):
-    #     for venda in Vendas.listar():
-    #         if venda.get_id_cliente() == id_cliente and venda.get_carrinho() == False:
-    #             id = venda.get_id()
-    #             data = venda.get_data()
-    #             carrinho = True
-    #             total = venda.get_total()
-    #             id_cliente = venda.get_id_cliente()
-    #             v = Venda(id, data, carrinho, total, id_cliente,)
-    #             Vendas.atualizar(v)
-    #             v = Venda(0, None, False, 0, id_cliente)
-    #             Vendas.inserir(v)
-    # @staticmethod
-    # def venda_listar():
-    #     return Vendas.listar()
-    # @staticmethod
-    # def venda_listar_id(id):
-    #     return Vendas.listar_id(id)
-    # @staticmethod
-    # def venda_atualizar(id, data, carrinho, total, id_cliente):
-    #     v = Venda(id, data, carrinho, total, id_cliente)
-    #     Vendas.atualizar(v)
-    # @staticmethod
-    # def venda_excluir(id):
-    #     v = Venda(id, "", "", "", "")
-    #     Vendas.excluir(v)
-    
- 
-    # @staticmethod
-    # def venda_item_listar():
-    #     return Venda_itens.listar()
-    # @staticmethod
-    # def venda_item_listar_id( id):
-    #     return Venda_itens.listar_id(id)
-    # @staticmethod
-    # def venda_item_inserir(q, p, id_venda, id_produto):
-    #     v = Venda_item(0, q, p, id_venda, id_produto)
-    #     Venda_itens.inserir(v)
-    # @staticmethod
-    # def venda_item_atualizar(id, q, p, id_venda, id_produto):
-    #     v = Venda_item(id, q, p, id_venda, id_produto)
-    #     Venda_itens.atualizar(v)
-    # @staticmethod
-    # def venda_item_excluir(id):
-    #     v = Venda_item(id, "", "", "", "")
-    #     Venda_itens.excluir(v)
+    @staticmethod
+    def exemplar_listar():
+        return Exemplares.listar()
+    @staticmethod
+    def exemplar_inserir(edicao, editora, situacao, idLivro, idGenero):
+        exemplares = Exemplares.listar()
+        for exemplar in exemplares:
+            if edicao == exemplar.get_edicao() and editora == exemplar.get_editora() and idLivro == exemplar.get_idLivro():
+                raise ValueError("Exemplar já cadastrado")
+        ex = Exemplar(0, edicao, editora, situacao, idLivro, idGenero)
+        Exemplares.inserir(ex)
+    @staticmethod
+    def exemplar_listar_id(id):
+        return Exemplares.listar_id(id)
+    @staticmethod
+    def exemplar_atualizar(id, edicao, editora, situacao, idLivro, idGenero):
+        exemplares = Exemplares.listar()
+        for exemplar in exemplares:
+            if edicao == exemplar.get_edicao() and editora == exemplar.get_editora() and idLivro == exemplar.get_idLivro():
+                raise ValueError("Exemplar já cadastrado")
+        ex = Exemplar(id, edicao, editora, situacao, idLivro, idGenero)
+        Exemplar.atualizar(ex)
+    @staticmethod
+    def exemplar_excluir(id):
+        exemplares = Exemplares.listar()
+        for exemplar in exemplares:
+            if id == exemplar.get_id():
+                ex = Exemplar(id, exemplar.get_edicao(), exemplar.get_editora(), exemplar.get_situcao(), exemplar.get_idLivro(), exemplar.get_idGenero())
+                Exemplares.excluir(ex)
 
-    
+    @staticmethod
+    def emprestimo_listar():
+        return Emprestimos.listar()
+    @staticmethod
+    def emprestimo_inserir(data, dataDevolucao, prazoExtendido, idExemplar, idUsuario):
+        emprestimos = Emprestimos.listar()
+        for emprestimo in emprestimos:
+            if idExemplar == emprestimo.get_idExemplar() and idUsuario == emprestimo.get_idUsuario():
+                raise ValueError("Emprestimo já cadastrado")
+        em = Emprestimo(0, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario)
+        Emprestimos.inserir(em)
+    @staticmethod
+    def emprestimo_listar_id(id):
+        return Emprestimos.listar_id(id)
+    @staticmethod
+    def emprestimo_atualizar(id, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario):
+        emprestimos = Emprestimos.listar()
+        for emprestimo in emprestimos:
+            if  idExemplar == emprestimo.get_idExemplar() and idUsuario == emprestimo.get_idUsuario():
+                raise ValueError("Emprestimo já cadastrado")
+        em = Emprestimo(id, data, dataDevolucao, prazoExtendido, idExemplar, idUsuario)
+        Emprestimos.atualizar(em)
+    @staticmethod
+    def emprestimo_excluir(id):
+        emprestimos = Emprestimos.listar()
+        for emprestimo in emprestimos:
+            if id == emprestimo.get_id():
+                em = Emprestimo(id, emprestimo.get_data(), emprestimo.get_dataDevolucao(), emprestimo.get_prazoExtendido(), emprestimo.get_idExemplar(), emprestimo.get_idUsuario())
+                Emprestimos.excluir(em)

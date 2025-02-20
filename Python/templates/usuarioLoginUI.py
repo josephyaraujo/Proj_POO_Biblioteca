@@ -5,8 +5,8 @@ import time
 class UsuarioLoginUI:
     def main():
         st.header("Entrar no sistema")
-        email = st.text_input("Informe e-mail")
-        senha = st.text_input("Informe a senha", type="password")
+        email = st.text_input("Informe o e-mail")
+        senha = st.text_input("Informe a senha", type="password", key="senha_entrar")
 
         if st.button("Entrar"):
             try:

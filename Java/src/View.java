@@ -32,13 +32,10 @@ public class View {
         usuModelo.inserir(usu);
     }
 
-    public static void verExemplares(){
+    public static List<Exemplar> verExemplares(){
         Exemplares exe = new Exemplares();
         List<Exemplar> exemplares = exe.listar();
-
-        for (Exemplar e : exemplares) {
-            System.out.println(e);
-        }
+        return exemplares;
     }
 
     public static Emprestimo consultarEmprestimo(int id) {

@@ -29,7 +29,7 @@ public class Usuario implements Objeto{
 
     public void setEmail(String email){
         if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("Email inválido");
+            throw new IllegalArgumentException("Email inválido.");
         }
 
         //Expressão regular \\ - dispensa o . $ - fim da string ^ - começo da string
@@ -40,18 +40,31 @@ public class Usuario implements Objeto{
         if (matcher.matches()) {
             this.email = email;
         } else {
-            throw new IllegalArgumentException("Email inválido");
+            throw new IllegalArgumentException("Email inválido. Formato aceito: xxxxxxx@gmail.com");
         }
     }
 
     public void setFone(String fone){
-        if (fone != "") this.fone = fone;
-        else throw new IllegalArgumentException("Numero de telefone não pode ser vazio");
+        if (fone != ""){
+            this.fone = fone;
+        } else {
+            throw new IllegalArgumentException("Numero de telefone vazio.");
+        }
+
+        String regex = "^\\(\\d{2}\\) \\d{5}-\\d{4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(fone);
+        
+        if (matcher.matches()) {
+            this.fone = fone;
+        } else {
+            throw new IllegalArgumentException("Telefone inválido. Formato aceito: (xx) xxxxx-xxxx");
+        }
     }
 
     public void setSenha(String senha){
         if (senha != "") this.senha = senha;
-        else throw new IllegalArgumentException("Senha não pode ser vazia.");
+        else throw new IllegalArgumentException("Senha vazia.");
     }
 
     public void setTipoUsuario(EnumUsuarios tipoUsuario){

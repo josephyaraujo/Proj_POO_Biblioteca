@@ -51,7 +51,7 @@ class Exemplar:
     
     def to_dict(self):
         return {
-            "id": self.get_id(), "edicao": self.get_edicao(), "editora" : self.get_editora(), "situacao" : self.get_situacao(), "id livro" : self.get_id_livro(), "id genero" : self.get_id_genero()
+            "id": self.get_id(), "edicao": self.get_edicao(), "editora" : self.get_editora(), "situacao" : self.get_situacao(), "idLivro" : self.get_id_livro(), "id genero" : self.get_id_genero()
         }
 class Exemplares(Modelo):
     @classmethod

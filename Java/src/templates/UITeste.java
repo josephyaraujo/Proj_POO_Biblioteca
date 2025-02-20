@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 
 public class UITeste{
     static Scanner input = new Scanner(System.in);
@@ -58,7 +59,7 @@ public class UITeste{
             String senha = input.nextLine();
 
             View.clienteInserir(nome, email, telefone, senha, EnumUsuarios.CLIENTE);
-            System.out.println("Cadastro realizado com sucesso! Entre na sua conta");
+            System.out.println("Cadastro realizado com sucesso! Entre na sua conta.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -80,7 +81,20 @@ public class UITeste{
 
             if (opMenu == 1) {
                 System.out.println("------EXEMPLARES------");
-                View.verExemplares();
+                List<Exemplar> exemplares = View.verExemplares();
+                for (Exemplar e : exemplares) {
+                    Livros livros = new Livros();
+                    Livro l = livros.listarId(e.getIdLivro());
+                    Generos generos = new Generos();
+                    Genero g = generos.listarId(e.getIdGenero());
+                    String nomeLivro = l.getTitulo();   // Acessando o nome do livro
+                    String nomeGenero = g.getDescricao(); // Acessando o nome do gênero
+                    String situacao = e.getSituacao() ? "Disponível" : "Emprestado"; // Determinando a situação
+                
+                    // Agora, imprimindo as informações formatadas
+                    System.out.println(String.format("ID: %d\nEdição: %d\nEditora: %s\nSituacao: %s\nLivro: %s\nGenero: %s",
+                            e.getId(), e.getEdicao(), e.getEditora(), situacao, nomeLivro, nomeGenero));
+                }
             } else if (opMenu == 2) {
                 System.out.println("------EMPRÉSTIMOS------");
                 Emprestimo e = View.consultarEmprestimo(usuario.getId());
@@ -101,7 +115,7 @@ public class UITeste{
         int opEmprestimo = 0;
         while (opEmprestimo != 3){
             System.out.println("O que deseja?");
-            System.out.println("1 - Solicitar aumento de prazo\n2 - Realizar devolução\n 3 - Voltar para tela inicial");
+            System.out.println("1 - Solicitar aumento de prazo\n2 - Voltar para tela inicial");
             System.out.print("Digite sua opção: ");
 
             opEmprestimo = input.nextInt();
@@ -109,10 +123,8 @@ public class UITeste{
             if (opEmprestimo == 1) {
 
             } else if (opEmprestimo == 2) {
-
-            } else if (opEmprestimo == 3){
                 return;
-            }
+            } 
         }
     }
 }

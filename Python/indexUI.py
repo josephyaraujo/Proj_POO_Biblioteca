@@ -9,9 +9,9 @@ from templates.manterFuncionarioUI import ManterFuncionarioUI
 from templates.manterLivroUI import ManterLivroUI
 from templates.manterGeneroUI import ManterGeneroUI
 from templates.manterAdminUI import ManterAdminUI
-# from templates.clienteProdutoUI import ClienteProdutoUI
+from templates.listarClientesUI import ListarClientesUI
 from templates.abrirContaUI import AbrirContaUI
-# from templates.visualizarPedidosUI import VisualizarPedidosUI
+from templates.manterExemplarUI import ManterExemplarUI
 from templates.usuarioLoginUI import UsuarioLoginUI
 from view.view import View
 
@@ -20,17 +20,19 @@ class IndexUI:
         UsuarioLoginUI.main()
 
     def menu_admin():
-        op = st.sidebar.selectbox("Menu", ["Cadastro de funcionário", "Cadastro de livros", "Cadastro de gênero", "Dados pessoais"])
+        op = st.sidebar.selectbox("Menu", ["Cadastro de funcionário", "Cadastro de livros", "Cadastro de gênero", "Clientes cadastrados", "Dados pessoais"])
         if op == "Cadastro de funcionário": ManterFuncionarioUI.main()
         if op == "Cadastro de livros": ManterLivroUI.main()
         if op == "Cadastro de gênero": ManterGeneroUI.main()
+        if op == "Clientes cadastrados": ListarClientesUI.main()
         if op == "Dados pessoais": ManterAdminUI.main()
 
     def menu_funcionario():
-        op = st.sidebar.selectbox("Menu", ["Cadastro de exemplar", "Cadastro de empréstimo", "Cadastro de livros", "Consultar disponibilidades", "Gerenciar prazos"])
+        op = st.sidebar.selectbox("Menu", ["Cadastro de exemplar", "Cadastro de empréstimo", "Cadastro de livros","Clientes", "Consultar disponibilidades", "Gerenciar prazos"])
         if op == "Cadastro de exemplar": ManterExemplarUI.main()
         if op == "Cadastro de empréstimo": ManterEmprestimoUI.main()
         if op == "Cadastro de livros": ManterLivroUI.main()
+        if op == "Clientes cadastrados": ListarClientesUI.main()
         if op == "Consultar disponibilidades": ManterExemplarUI.exemplar_listar()
         if op == "Gerenciar prazos": ManterEmprestimoUI.emprestimo_atualizar()
         
@@ -58,7 +60,7 @@ class IndexUI:
 
     def main():
         if not View.admin_listar():
-            st.warning("Nenhum administrador cadastrado. Crie uma conta de administrador para coninuar.")
+            st.warning("Nenhum administrador cadastrado. Crie uma conta de administrador para continuar.")
             AbrirContaUI.main()
             return
         IndexUI.sidebar()

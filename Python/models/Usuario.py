@@ -1,6 +1,7 @@
 import json
 from models.Modelo import Modelo
 from enum import Enum
+import re
 
 class Usuario:
     def __init__(self, id, nome, email, fone, senha, tipo_usuario):
@@ -22,12 +23,20 @@ class Usuario:
     def set_email(self, email):
         if not email:
             raise ValueError("Email vazio")
-        self.__email = email
+        regex = r'^[a-zA-Z0-9._%+-]+@gmail\.com$'
+        if (re.match(regex, email)):
+            self.__email = email
+        else:
+            raise ValueError("Email inválido. Formato válido xxxxxxx@gmail.com")
 
     def set_fone(self, fone):
         if not fone:
             raise ValueError("Telefone vazio")
-        self.__fone = fone
+        regex = r'^\(\d{2}\) \d{5}-\d{4}$'
+        if (re.match(regex, fone)):
+            self.__fone = fone
+        else:
+            raise ValueError("Formato de telefone inválido. Formato válido (xx) xxxxx-xxxx")
 
     def set_senha(self, senha):
         if not senha:

@@ -1,0 +1,10 @@
+[
+      {
+            "id": 1,
+            "edicao": "3",
+            "editora": "Dark Side",
+            "situacao": true,
+            "idLivro": 1,
+            "idGenero": 1
+      }
+]
