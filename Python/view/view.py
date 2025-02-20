@@ -188,5 +188,5 @@ class View:
         emprestimos = Emprestimos.listar()
         for emprestimo in emprestimos:
             if id == emprestimo.get_id():
-                em = Emprestimo(id, emprestimo.get_data(), emprestimo.get_dataDevolucao(), emprestimo.get_prazoExtendido(), emprestimo.get_idExemplar(), emprestimo.get_idUsuario())
+                em = Emprestimo(id, emprestimo.get_data(), emprestimo.get_data_devolucao(), emprestimo.get_prazo_extendido(), emprestimo.get_id_exemplar(), emprestimo.get_id_usuario())
                 Emprestimos.excluir(em)

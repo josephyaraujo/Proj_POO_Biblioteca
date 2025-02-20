@@ -6,7 +6,7 @@ import time
 class ManterLivroUI:
     @staticmethod
     def main():
-        st.header("Cadastro de Livros")
+        st.header("Gerenciamento de Livros")
         tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir"])
 
         with tab1:

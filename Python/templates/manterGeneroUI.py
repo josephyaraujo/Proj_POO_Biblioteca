@@ -6,7 +6,7 @@ import time
 class ManterGeneroUI:
     @staticmethod
     def main():
-        st.header("Cadastro de genero")
+        st.header("Gerenciamento de genero")
         tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir"])
 
         with tab1:

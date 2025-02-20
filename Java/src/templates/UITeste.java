@@ -87,11 +87,10 @@ public class UITeste{
                     Livro l = livros.listarId(e.getIdLivro());
                     Generos generos = new Generos();
                     Genero g = generos.listarId(e.getIdGenero());
-                    String nomeLivro = l.getTitulo();   // Acessando o nome do livro
-                    String nomeGenero = g.getDescricao(); // Acessando o nome do gênero
-                    String situacao = e.getSituacao() ? "Disponível" : "Emprestado"; // Determinando a situação
+                    String nomeLivro = l.getTitulo(); 
+                    String nomeGenero = g.getDescricao();
+                    String situacao = e.getSituacao() ? "Disponível" : "Emprestado";
                 
-                    // Agora, imprimindo as informações formatadas
                     System.out.println(String.format("ID: %d\nEdição: %d\nEditora: %s\nSituacao: %s\nLivro: %s\nGenero: %s",
                             e.getId(), e.getEdicao(), e.getEditora(), situacao, nomeLivro, nomeGenero));
                 }

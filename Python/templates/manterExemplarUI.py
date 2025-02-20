@@ -6,7 +6,7 @@ import time
 class ManterExemplarUI:
     @staticmethod
     def main():
-        st.header("Cadastro de exemplares")
+        st.header("Gerenciamento de exemplares")
         tab1, tab2, tab3 = st.tabs(["Inserir", "Atualizar", "Excluir"])
 
         with tab1:

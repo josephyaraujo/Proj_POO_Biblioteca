@@ -6,9 +6,9 @@ class Emprestimo:
         self.set_id(id)
         self.set_data(data)
         self.set_data_devolucao(dataDevolucao)
-        self.prazo_extendido(prazoExtendido)
-        self.id_exemplar(idExemplar)
-        self.id_usuario(idUsuario)
+        self.set_prazo_extendido(prazoExtendido)
+        self.set_id_exemplar(idExemplar)
+        self.set_id_usuario(idUsuario)
 
     def set_id(self, id):
         self.__id = id
@@ -51,7 +51,7 @@ class Emprestimo:
     
     def to_dict(self):
         return {
-            "id": self.get_id(), "data": self.get_data(), "data devolucao" : self.get_data_devolucao(), "prazo extendido" : self.get_prazo_extendido(), "id exemplar" : self.get_id_exemplar(), "id usuario" : self.get_id_usuario()
+            "id": self.get_id(), "data": self.get_data(), "dataDevolucao" : self.get_data_devolucao(), "prazoExtendido" : self.get_prazo_extendido(), "idExemplar" : self.get_id_exemplar(), "idUsuario" : self.get_id_usuario()
         }
     
 class Emprestimos(Modelo):

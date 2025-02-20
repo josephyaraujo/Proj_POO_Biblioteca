@@ -6,7 +6,7 @@ import time
 class ManterFuncionarioUI:
     @staticmethod
     def main():
-        st.header("Cadastro de Funcionários")
+        st.header("Gerenciamento de Funcionários")
         tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir"])
 
         with tab1:
