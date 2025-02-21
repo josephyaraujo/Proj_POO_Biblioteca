@@ -24,7 +24,7 @@ public class Usuario implements Objeto{
 
     public void setNome(String nome){
         if (nome != "") this.nome = nome;
-        else throw new IllegalArgumentException("Nome não pode ser vazio");
+        else throw new IllegalArgumentException("Campo nome não pode ser vazio.");
     }
 
     public void setEmail(String email){

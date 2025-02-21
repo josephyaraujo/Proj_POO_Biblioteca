@@ -1,23 +1,16 @@
 [
      {
-          "id": 1,
-          "titulo": "Boneco de neve",
-          "autor": "Robert",
+          "id": 4,
+          "titulo": "Garota Exemplar",
+          "autor": "Gillian Flynn",
           "ano": 2012,
           "idGenero": 1
      },
      {
-          "id": 2,
-          "titulo": "Jogos Vorazes",
-          "autor": "Madonna",
-          "ano": 2015,
-          "idGenero": 4
-     },
-     {
-          "id": 3,
-          "titulo": "Assim que acaba",
-          "autor": "Collen Hoover",
-          "ano": 2016,
-          "idGenero": 2
+          "id": 1,
+          "titulo": "Boneco de neve",
+          "autor": "Jo Nesbo",
+          "ano": 2007,
+          "idGenero": 1
      }
 ]

@@ -38,7 +38,7 @@ class ManterAdminUI:
             
         if st.button("Atualizar informações"):
             try:
-                View.admin_atualizar(admin.get_id(), nome, email, fone, senha, "ADMIN")
+                View.admin_atualizar(admin[0].get_id(), nome, email, fone, senha)
                 st.success("Informações atualizadas")
                 time.sleep(2)
                 st.rerun()

@@ -21,9 +21,9 @@ class ManterFuncionarioUI:
 
     @classmethod 
     def funcionario_inserir(cls):
-        nome = st.text_input("Informe o nome")
-        email = st.text_input("Informe o e-mail")
-        fone = st.text_input("Informe o fone")
+        nome = st.text_input("Informe o nome", key="nome_funcionario")
+        email = st.text_input("Informe o e-mail", key="email_funcionario")
+        fone = st.text_input("Informe o fone", key="fone_funcionario")
         senha = st.text_input("Informe a senha", type="password", key="senha_funcionario")
 
         if st.button("Inserir"):
@@ -70,7 +70,7 @@ class ManterFuncionarioUI:
             
             if st.button("Atualizar"):
                 try:
-                    View.funcionario_atualizar(selecionado.get_id(), nome, email, fone, senha, "FUNCIONARIO")
+                    View.funcionario_atualizar(selecionado.get_id(), nome, email, fone, senha)
                     st.success("Informações do funcionário atualizadas")
                     time.sleep(2)
                     st.rerun()

@@ -21,8 +21,6 @@ class ManterExemplarUI:
     def exemplar_inserir(cls):
         edicao = st.number_input("Informe a edicao do exemplar", value = 0, step = 1)
         editora = st.text_input("Informe a editora do exemplar")
-        situacao = st.selectbox("Informe a situação", options=["Disponível", "Indisponível"])
-        situacao_booleano = True if situacao == "Disponível" else False
         livros = View.livro_listar()
         if len(livros) == 0:
             st.warning("Nenhum livro cadastrado. Cadastre um livro antes de inserir um exemplar.")
@@ -32,7 +30,7 @@ class ManterExemplarUI:
         
         if st.button("Inserir"):
             try:
-                View.exemplar_inserir(edicao, editora, situacao_booleano, livro.get_id(), livro.get_id_genero())
+                View.exemplar_inserir(edicao, editora, True, livro.get_id(), livro.get_id_genero())
                 st.success("Exemplar adicionado na biblioteca")
                 time.sleep(2)
                 st.rerun()
@@ -79,9 +77,8 @@ class ManterExemplarUI:
             editora = st.text_input("Informe a editora", selecionado.get_editora(), key="editora_atualizar")
             situacao = st.selectbox("Informe a situação", options=["Disponível", "Indisponível"], key="situacao_atualizar")
             situacao_booleano = True if situacao == "Disponível" else False
-            livro_opcoes = {l.get_titulo(): l for l in livros}
-            livro = st.selectbox("Selecione o livro do exemplar", list(livro_opcoes.keys()), 
-                                          index=list(livro_opcoes.keys()).index(next((l.get_titulo() for l in livros if l.get_id() == selecionado.get_id_livro()), list(livro_opcoes.keys())[0])))
+            livros = View.livro_listar()
+            livro = st.selectbox("Selecione o livro do exemplar", livros, key="exemplar_atualizar")
 
             if st.button("Atualizar informações"):
                 try:
@@ -96,13 +93,18 @@ class ManterExemplarUI:
     @classmethod 
     def exemplar_excluir(cls):
         exemplares = View.exemplar_listar()
+        emprestimos = View.emprestimo_listar()
         if (len(exemplares) == 0):
             st.write("Nenhum exemplar cadastrado")
         else:
             selecionado = st.selectbox("Exclusão de exemplar", exemplares)
-       
+
             if st.button("Excluir"):
-                View.exemplar_excluir(selecionado.get_id())
-                st.success("Exemplar excluído")
-                time.sleep(2)
-                st.rerun()
+                for emprestimo in emprestimos:
+                    if selecionado.get_id() == emprestimo.get_id_exemplar():
+                        st.error("Exemplar cadastrado em um empréstimo. Não pode ser excluido.")
+                    else:
+                        View.exemplar_excluir(selecionado.get_id())
+                        st.success("Exemplar excluído")
+                        time.sleep(2)
+                        st.rerun()

@@ -7,9 +7,9 @@ public class indexUI{
     public static void main(String[] args){
         int op = 0;
         while (op != 3){
-            System.out.println("------------------------");
+            System.out.println("-------------------------");
             System.out.println("| SISTEMA DE BIBLIOTECA |");
-            System.out.println("------------------------");
+            System.out.println("-------------------------");
             System.out.println(
                                 "1 - Entrar no sistema\n" + //
                                 "2 - Cadastrar-se no sistema como cliente\n" + //
@@ -38,7 +38,7 @@ public class indexUI{
         Usuario usuario = View.usuarioAutenticar(email, senha);
 
         if (usuario == null) {
-            System.out.println("Usuario não tem acesso a essa página.\n");
+            System.out.println("Usuário incorreto.\n");
         } else {
             menuCliente(usuario);
         }
@@ -73,7 +73,7 @@ public class indexUI{
             System.out.println("-----------------------");
             System.out.println("Seja bem-vindo(a) " + usuario.getNome());
             System.out.println("O que deseja?");
-            System.out.println("1 - Ver exemplares disponíveis\n2 - Consultar empréstimos\n3 - Sair da conta");
+            System.out.println("1 - Ver exemplares\n2 - Consultar empréstimos\n3 - Sair da conta");
             System.out.print("Digite sua opção: ");
 
             opMenu = input.nextInt();
@@ -139,12 +139,12 @@ public class indexUI{
     
                 Emprestimo emprestimoSelecionado = emprestimos.get(indiceEmprestimo);
 
-                System.out.print("Digite quantos dias deseja para aumentar o prazo da devolução. (Máximo 10 dias):");
+                System.out.print("Digite quantos dias deseja para aumentar o prazo da devolução. (Máximo: 10 dias):");
                 int prazoExtendido = input.nextInt();
 
                 try {
                     View.aumentarPrazo(prazoExtendido, usuario.getId(), emprestimoSelecionado.getId());
-                    System.out.println("Data de devolução alterada");
+                    System.out.println("Data de devolução alterada!");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }

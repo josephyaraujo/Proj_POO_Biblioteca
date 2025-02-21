@@ -25,7 +25,7 @@ class View:
             if email == usuario.get_email() and id != usuario.get_id():
                 raise ValueError("Email já cadastrado")
             if id == usuario.get_id():        
-                u = Usuarios(id, nome, email, fone, senha, "ADMIN")
+                u = Usuario(id, nome, email, fone, senha, "ADMIN")
         Usuarios.atualizar(u)
     @staticmethod
     def admin_excluir(id):
@@ -67,7 +67,7 @@ class View:
             if email == usuario.get_email() and id != usuario.get_id():
                 raise ValueError("Email já cadastrado")
             if id == usuario.get_id():        
-                u = Usuarios(id, nome, email, fone, senha, "FUNCIONARIO")
+                u = Usuario(id, nome, email, fone, senha, "FUNCIONARIO")
         Usuarios.atualizar(u)
     @staticmethod
     def funcionario_excluir(id):
@@ -120,8 +120,11 @@ class View:
         Livros.atualizar(l)
     @staticmethod
     def livro_excluir(id):
-        l = Livro(id, "livro", 0, 0, None)
-        Livros.excluir(l)
+        livros = Livros.listar()
+        for livro in livros:
+            if livro.get_id() == id:
+                l = Livro(id, livro.get_titulo(), livro.get_autor(), livro.get_ano(), livro.get_id_genero())
+                Livros.excluir(l)
         
     @staticmethod
     def exemplar_listar():
@@ -146,7 +149,7 @@ class View:
         exemplares = Exemplares.listar()
         for exemplar in exemplares:
             if id == exemplar.get_id():
-                ex = Exemplar(id, exemplar.get_edicao(), exemplar.get_editora(), exemplar.get_situcao(), exemplar.get_id_livro(), exemplar.get_id_genero())
+                ex = Exemplar(id, exemplar.get_edicao(), exemplar.get_editora(), exemplar.get_situacao(), exemplar.get_id_livro(), exemplar.get_id_genero())
                 Exemplares.excluir(ex)
 
     @staticmethod

@@ -1,13 +1,5 @@
 [
       {
-            "id": 2,
-            "nome": "Josephy Cruz",
-            "email": "josephy@gmail.com",
-            "fone": "(84) 99999-9999",
-            "senha": "jo1234",
-            "tipoUsuario": "FUNCIONARIO"
-      },
-      {
             "id": 3,
             "nome": "gilbert",
             "email": "gilbert@gmail.com",
@@ -16,10 +8,34 @@
             "tipoUsuario": "CLIENTE"
       },
       {
+            "id": 5,
+            "nome": "Karla Cristina",
+            "email": "karla@gmail.com",
+            "fone": "(84) 98888-8888",
+            "senha": "ka1234",
+            "tipoUsuario": "CLIENTE"
+      },
+      {
+            "id": 6,
+            "nome": "Jo\u00e3o Victor",
+            "email": "joao@gmail.com",
+            "fone": "(84) 97777-7777",
+            "senha": "joao123",
+            "tipoUsuario": "FUNCIONARIO"
+      },
+      {
+            "id": 7,
+            "nome": "Josephy Cruz",
+            "email": "josephy@gmail.com",
+            "fone": "(84) 66665-6666",
+            "senha": "jo1234",
+            "tipoUsuario": "FUNCIONARIO"
+      },
+      {
             "id": 4,
             "nome": "emanuelly",
             "email": "emanuelly@gmail.com",
-            "fone": "(84) 98888-8888",
+            "fone": "(84) 98888-8882",
             "senha": "manu1234",
             "tipoUsuario": "ADMIN"
       }

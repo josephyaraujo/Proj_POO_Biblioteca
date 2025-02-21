@@ -55,7 +55,10 @@ class Emprestimo:
         return self.__id_usuario
     
     def __str__(self):
-        return f"Data = {self.get_data()}  |  DATA DEVOLUCAO = {self.get_data_devolucao()}  |  PRAZO EXTENDIDO = {self.get_prazo_extendido()} | EXEMPLAR = {self.get_id_exemplar()} | USUARIO = {self.get_id_usuario()}"
+        from view.view import View
+        usuario = View.cliente_listar()
+        nome_usuario = next((u.get_nome() for u in usuario if u.get_id() == self.get_id_usuario()), "Desconhecido")
+        return f"ID = {self.get_id()} | DATA = {self.get_data()}  |  DEVOLUCAO = {self.get_data_devolucao()}  | USUARIO = {nome_usuario} | EXEMPLAR = {self.get_id_exemplar()} | PRAZO EXTENDIDO = {self.get_prazo_extendido()}"
     
     def to_dict(self):
         return {

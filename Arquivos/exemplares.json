@@ -1,34 +1,18 @@
 [
       {
-            "id": 1,
-            "edicao": 1,
-            "editora": "Editora 1",
-            "situacao": false,
-            "idLivro": 1,
-            "idGenero": 1
-      },
-      {
             "id": 2,
             "edicao": 3,
-            "editora": "Editora 2",
+            "editora": "Editora Acao",
             "situacao": false,
-            "idLivro": 2,
-            "idGenero": 4
+            "idLivro": 4,
+            "idGenero": 1
       },
       {
             "id": 3,
             "edicao": 2,
             "editora": "Editora 2",
             "situacao": false,
-            "idLivro": 2,
-            "idGenero": 4
-      },
-      {
-            "id": 4,
-            "edicao": 5,
-            "editora": "Editora 3",
-            "situacao": true,
-            "idLivro": 2,
-            "idGenero": 4
+            "idLivro": 1,
+            "idGenero": 1
       }
 ]

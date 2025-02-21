@@ -1,18 +1,18 @@
 [
   {
-    "id": 1,
-    "descricao": "Terror"
-  },
-  {
-    "id": 2,
-    "descricao": "Romance"
-  },
-  {
     "id": 3,
     "descricao": "Comedia"
   },
   {
     "id": 4,
     "descricao": "Acao"
+  },
+  {
+    "id": 5,
+    "descricao": "Romance"
+  },
+  {
+    "id": 1,
+    "descricao": "Terror psicologico"
   }
 ]

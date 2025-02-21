@@ -29,7 +29,7 @@ class ManterEmprestimoUI:
         else:
             cliente = st.selectbox("Selecione a conta do cliente", clientes)
         
-        emprestimos_ativos = [e for e in View.emprestimo_listar() if e.get_id_usuario() == cliente.get_id() and e.get_data_devolucao() >= datetime.datetime.now().strftime("%d/%m/%Y")]
+        emprestimos_ativos = [e for e in View.emprestimo_listar() if e.get_id_usuario() == cliente.get_id()]
         if len(emprestimos_ativos) >= 3:
             st.warning("Este cliente já possui 3 empréstimos ativos. Não é possível realizar um novo empréstimo.")
             return
@@ -91,8 +91,6 @@ class ManterEmprestimoUI:
     @classmethod 
     def emprestimo_atualizar(cls):
         emprestimos = View.emprestimo_listar()
-        exemplares = View.exemplar_listar()
-        clientes = View.cliente_listar()
         if len(emprestimos) == 0:
             st.write("Nenhum emprestimo cadastrado")
         else:
@@ -102,7 +100,7 @@ class ManterEmprestimoUI:
             
             if st.button("Atualizar"):
                 try:
-                    View.livro_atualizar(selecionado.get_data(), data_dev_formatada, selecionado.get_prazo_extendido(), selecionado.get_id_exemplar(), selecionado.get_id_usuario())
+                    View.emprestimo_atualizar(selecionado.get_id(), selecionado.get_data(), data_dev_formatada, selecionado.get_prazo_extendido(), selecionado.get_id_exemplar(), selecionado.get_id_usuario())
                     st.success("Empréstimo atualizado")
                     time.sleep(2)
                     st.rerun()
@@ -112,8 +110,9 @@ class ManterEmprestimoUI:
 
     @classmethod 
     def emprestimo_excluir(cls):
+        ManterEmprestimoUI.emprestimo_listar()
+
         emprestimos = View.emprestimo_listar()
-        exemplares = View.exemplar_listar()
         if (len(emprestimos) == 0):
             st.write("Nenhum empréstimo cadastrado")
         else:
@@ -121,7 +120,7 @@ class ManterEmprestimoUI:
        
             if st.button("Fechar"):
                 exemplar = View.exemplar_listar_id(selecionado.get_id_exemplar())
-                View.exemplar_excluir(selecionado.get_id())
+                View.emprestimo_excluir(selecionado.get_id())
                 View.exemplar_atualizar(exemplar.get_id(), exemplar.get_edicao(), exemplar.get_editora(), True, exemplar.get_id_livro(), exemplar.get_id_genero())
                 st.success("Empréstimo finalizado")
                 time.sleep(2)

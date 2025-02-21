@@ -76,9 +76,8 @@ class ManterLivroUI:
             titulo = st.text_input("Informe o titulo", selecionado.get_titulo())
             autor = st.text_input("Informe o autor", selecionado.get_autor())
             ano = st.number_input("Informe o ano", value = selecionado.get_ano(), step = 1)
-            genero_opcoes = {g.get_descricao(): g for g in generos}
-            genero = st.selectbox("Selecione o gênero", list(genero_opcoes.keys()), 
-                                          index=list(genero_opcoes.keys()).index(next((g.get_descricao() for g in generos if g.get_id() == selecionado.get_id_genero()), list(genero_opcoes.keys())[0])))
+            generos = View.genero_listar()
+            genero = st.selectbox("Selecione o gênero do livro", generos, key="livro_atualizar")
 
             if st.button("Atualizar"):
                 try:
